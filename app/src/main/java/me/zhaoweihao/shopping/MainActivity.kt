@@ -1,7 +1,6 @@
 package me.zhaoweihao.shopping
 
 import android.app.FragmentTransaction
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
@@ -46,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         when (index) {
             0 -> {
                 home_image!!.setImageResource(R.mipmap.ic_launcher)
-                home_text!!.setTextColor(Color.WHITE)
                 if (mHomeFragment == null) {
                     mHomeFragment = HomeFragment()
                     transaction.add(R.id.content, mHomeFragment)
@@ -56,7 +54,6 @@ class MainActivity : AppCompatActivity() {
             }
             1 -> {
                 contact_image!!.setImageResource(R.mipmap.ic_launcher)
-                contact_text!!.setTextColor(Color.WHITE)
                 if (mContactFragment == null) {
                     mContactFragment = ContactFragment()
                     transaction.add(R.id.content, mContactFragment)
@@ -66,7 +63,6 @@ class MainActivity : AppCompatActivity() {
             }
             2 -> {
                 moment_image!!.setImageResource(R.mipmap.ic_launcher)
-                moment_text!!.setTextColor(Color.WHITE)
                 if (mMomentFragment == null) {
                     mMomentFragment = MomentFragment()
                     transaction.add(R.id.content, mMomentFragment)
@@ -76,7 +72,6 @@ class MainActivity : AppCompatActivity() {
             }
             3 -> {
                 user_image!!.setImageResource(R.mipmap.ic_launcher)
-                user_text!!.setTextColor(Color.WHITE)
                 if (mUserFragment == null) {
                     mUserFragment = UserFragment()
                     transaction.add(R.id.content, mUserFragment)
@@ -90,13 +85,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearSelection() {
         home_image!!.setImageResource(R.mipmap.ic_launcher)
-        home_text!!.setTextColor(Color.parseColor("#82858b"))
         contact_image!!.setImageResource(R.mipmap.ic_launcher)
-        contact_text!!.setTextColor(Color.parseColor("#82858b"))
         moment_image!!.setImageResource(R.mipmap.ic_launcher)
-        moment_text!!.setTextColor(Color.parseColor("#82858b"))
         user_image!!.setImageResource(R.mipmap.ic_launcher)
-        user_text!!.setTextColor(Color.parseColor("#82858b"))
     }
 
     private fun hideFragments(transaction: FragmentTransaction) {
