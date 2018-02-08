@@ -19,9 +19,7 @@ class ContactFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val moreLayout = inflater!!.inflate(R.layout.fragment_contact, container, false)
-
-        return moreLayout
+        return inflater!!.inflate(R.layout.fragment_contact, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

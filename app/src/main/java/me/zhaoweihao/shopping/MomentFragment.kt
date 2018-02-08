@@ -23,9 +23,8 @@ class MomentFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val userLayout = inflater!!.inflate(R.layout.fragment_moment,
+        return inflater!!.inflate(R.layout.fragment_moment,
                 container, false)
-        return userLayout
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

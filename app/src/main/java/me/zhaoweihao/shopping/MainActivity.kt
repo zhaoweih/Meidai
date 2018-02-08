@@ -26,28 +26,27 @@ class MainActivity : AppCompatActivity() {
 
         bindListener()
 
-        // select 0 tab when first run
         setTabSelection(0)
     }
 
     private fun bindListener() {
-        contact_layout!!.setOnClickListener{setTabSelection(0)}
-        more_layout!!.setOnClickListener{setTabSelection(1)}
-        user_layout!!.setOnClickListener{setTabSelection(2)}
-        extra_layout!!.setOnClickListener { setTabSelection(3) }
+        home_layout!!.setOnClickListener{setTabSelection(0)}
+        contact_layout!!.setOnClickListener{setTabSelection(1)}
+        moment_layout!!.setOnClickListener{setTabSelection(2)}
+        user_layout!!.setOnClickListener { setTabSelection(3) }
     }
 
     private fun setTabSelection(index: Int) {
-        // Clear the last selected state before each selection
+
         clearSelection()
-        // Open a Fragment transaction
+
         val transaction = fragmentManager!!.beginTransaction()
-        // Hide all the Fragment first to prevent multiple Fragment displayed on the screen
+
         hideFragments(transaction)
         when (index) {
             0 -> {
-                contact_image!!.setImageResource(R.mipmap.ic_launcher)
-                contact_text!!.setTextColor(Color.WHITE)
+                home_image!!.setImageResource(R.mipmap.ic_launcher)
+                home_text!!.setTextColor(Color.WHITE)
                 if (mHomeFragment == null) {
                     mHomeFragment = HomeFragment()
                     transaction.add(R.id.content, mHomeFragment)
@@ -56,8 +55,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             1 -> {
-                more_image!!.setImageResource(R.mipmap.ic_launcher)
-                more_text!!.setTextColor(Color.WHITE)
+                contact_image!!.setImageResource(R.mipmap.ic_launcher)
+                contact_text!!.setTextColor(Color.WHITE)
                 if (mContactFragment == null) {
                     mContactFragment = ContactFragment()
                     transaction.add(R.id.content, mContactFragment)
@@ -66,8 +65,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             2 -> {
-                user_image!!.setImageResource(R.mipmap.ic_launcher)
-                user_text!!.setTextColor(Color.WHITE)
+                moment_image!!.setImageResource(R.mipmap.ic_launcher)
+                moment_text!!.setTextColor(Color.WHITE)
                 if (mMomentFragment == null) {
                     mMomentFragment = MomentFragment()
                     transaction.add(R.id.content, mMomentFragment)
@@ -76,8 +75,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             3 -> {
-                extra_image!!.setImageResource(R.mipmap.ic_launcher)
-                extra_text!!.setTextColor(Color.WHITE)
+                user_image!!.setImageResource(R.mipmap.ic_launcher)
+                user_text!!.setTextColor(Color.WHITE)
                 if (mUserFragment == null) {
                     mUserFragment = UserFragment()
                     transaction.add(R.id.content, mUserFragment)
@@ -90,14 +89,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearSelection() {
+        home_image!!.setImageResource(R.mipmap.ic_launcher)
+        home_text!!.setTextColor(Color.parseColor("#82858b"))
         contact_image!!.setImageResource(R.mipmap.ic_launcher)
         contact_text!!.setTextColor(Color.parseColor("#82858b"))
-        more_image!!.setImageResource(R.mipmap.ic_launcher)
-        more_text!!.setTextColor(Color.parseColor("#82858b"))
+        moment_image!!.setImageResource(R.mipmap.ic_launcher)
+        moment_text!!.setTextColor(Color.parseColor("#82858b"))
         user_image!!.setImageResource(R.mipmap.ic_launcher)
         user_text!!.setTextColor(Color.parseColor("#82858b"))
-        extra_image!!.setImageResource(R.mipmap.ic_launcher)
-        extra_text!!.setTextColor(Color.parseColor("#82858b"))
     }
 
     private fun hideFragments(transaction: FragmentTransaction) {
