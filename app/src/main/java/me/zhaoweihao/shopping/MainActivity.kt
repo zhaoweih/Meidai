@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_main)
 
-        title="HNUPlus(Preview Version)"
+        title = "HNUPlus(Preview Version)"
 
         bindListener()
 
@@ -29,9 +29,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindListener() {
-        home_layout!!.setOnClickListener{setTabSelection(0)}
-        contact_layout!!.setOnClickListener{setTabSelection(1)}
-        moment_layout!!.setOnClickListener{setTabSelection(2)}
+        home_layout!!.setOnClickListener { setTabSelection(0) }
+        contact_layout!!.setOnClickListener { setTabSelection(1) }
+        moment_layout!!.setOnClickListener { setTabSelection(2) }
         user_layout!!.setOnClickListener { setTabSelection(3) }
     }
 
