@@ -12,8 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_moment.*
-import me.zhaoweihao.shopping.PageFragment
-import me.zhaoweihao.shopping.R
+import me.zhaoweihao.shopping.*
 
 
 /**
@@ -23,6 +22,13 @@ import me.zhaoweihao.shopping.R
 class MomentFragment : Fragment() {
 
     private var pagerAdapter : MomentFragmentPagerAdapter? = null
+
+    companion object {
+
+        fun newInstance(): MomentFragment {
+            return MomentFragment()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +55,15 @@ class MomentFragment : Fragment() {
         private val tabTitles = arrayOf(context.getText(R.string.dynamic), context.getText(R.string.score), context.getText(R.string.location))
 
         override fun getItem(position: Int): Fragment {
-            return PageFragment.newInstance(position + 1)
+            return when (position) {
+                0 -> DynamicFragment.newInstance()
+                1 -> ScoreFragment.newInstance()
+                2 -> LocationFragment.newInstance()
+                else -> {
+                    DynamicFragment.newInstance()
+                }
+            }
+
         }
 
         override fun getCount(): Int {

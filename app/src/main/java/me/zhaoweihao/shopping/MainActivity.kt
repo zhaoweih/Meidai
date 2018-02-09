@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             0 -> {
                 home_image!!.setImageResource(R.mipmap.ic_launcher)
                 if (mHomeFragment == null) {
-                    mHomeFragment = HomeFragment()
+                    mHomeFragment = HomeFragment.newInstance()
                     transaction.add(R.id.content, mHomeFragment)
                 } else {
                     transaction.show(mHomeFragment)
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             1 -> {
                 contact_image!!.setImageResource(R.mipmap.ic_launcher)
                 if (mContactFragment == null) {
-                    mContactFragment = ContactFragment()
+                    mContactFragment = ContactFragment.newInstance()
                     transaction.add(R.id.content, mContactFragment)
                 } else {
                     transaction.show(mContactFragment)
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             2 -> {
                 moment_image!!.setImageResource(R.mipmap.ic_launcher)
                 if (mMomentFragment == null) {
-                    mMomentFragment = MomentFragment()
+                    mMomentFragment = MomentFragment.newInstance()
                     transaction.add(R.id.content, mMomentFragment)
                 } else {
                     transaction.show(mMomentFragment)
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             3 -> {
                 user_image!!.setImageResource(R.mipmap.ic_launcher)
                 if (mUserFragment == null) {
-                    mUserFragment = UserFragment()
+                    mUserFragment = UserFragment.newInstance()
                     transaction.add(R.id.content, mUserFragment)
                 } else {
                     transaction.show(mUserFragment)

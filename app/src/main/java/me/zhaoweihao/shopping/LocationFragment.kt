@@ -5,23 +5,24 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import me.zhaoweihao.hnuplus.ContactFragment
 
 /**
- * Created by Administrator on 2018/2/8.
+ * Created by Administrator on 2018/2/9.
  */
-class UserFragment : Fragment() {
+class LocationFragment : Fragment() {
 
     companion object {
 
-        fun newInstance(): UserFragment {
-            return UserFragment()
+        fun newInstance(): LocationFragment {
+            return LocationFragment()
         }
     }
 
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_user, container, false)
+        return inflater!!.inflate(R.layout.fragment_location,
+                container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
