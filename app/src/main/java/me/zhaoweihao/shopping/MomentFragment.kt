@@ -1,13 +1,18 @@
 package me.zhaoweihao.hnuplus
 
-import android.app.Fragment
 
+import android.content.Context
 import android.os.Bundle
-
+import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_moment.*
+import me.zhaoweihao.shopping.PageFragment
 import me.zhaoweihao.shopping.R
 
 
@@ -16,6 +21,8 @@ import me.zhaoweihao.shopping.R
  */
 
 class MomentFragment : Fragment() {
+
+    private var pagerAdapter : MomentFragmentPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +36,29 @@ class MomentFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pagerAdapter = MomentFragmentPagerAdapter(fragmentManager, activity)
+
+        viewpager.adapter = pagerAdapter
+        sliding_tabs.setupWithViewPager(viewpager)
+        sliding_tabs.tabMode = TabLayout.MODE_FIXED
     }
 
+    private class MomentFragmentPagerAdapter(fm: FragmentManager, private val context: Context) : FragmentPagerAdapter(fm) {
+
+        internal val PAGE_COUNT = 3
+        private val tabTitles = arrayOf(context.getText(R.string.dynamic), context.getText(R.string.score), context.getText(R.string.location))
+
+        override fun getItem(position: Int): Fragment {
+            return PageFragment.newInstance(position + 1)
+        }
+
+        override fun getCount(): Int {
+            return PAGE_COUNT
+        }
+
+        override fun getPageTitle(position: Int): CharSequence {
+            return tabTitles[position]
+        }
+    }
 
 }

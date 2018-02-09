@@ -1,8 +1,9 @@
 package me.zhaoweihao.shopping
 
-import android.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
 import android.view.Window
 import kotlinx.android.synthetic.main.activity_main.*
 import me.zhaoweihao.hnuplus.HomeFragment
@@ -16,12 +17,12 @@ class MainActivity : AppCompatActivity() {
     private var mMomentFragment: MomentFragment? = null
     private var mUserFragment: UserFragment? = null
 
+    private var fragmentManager: FragmentManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_main)
-
-        title = "HNUPlus(Preview Version)"
 
         bindListener()
 
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity() {
     private fun setTabSelection(index: Int) {
 
         clearSelection()
+
+        fragmentManager = supportFragmentManager
 
         val transaction = fragmentManager!!.beginTransaction()
 

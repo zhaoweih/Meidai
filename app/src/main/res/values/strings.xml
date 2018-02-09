@@ -5,4 +5,7 @@
     <string name="moment">代购圈</string>
     <string name="user">我</string>
     <string name="scan">扫一扫</string>
+    <string name="dynamic">动态</string>
+    <string name="score">评分</string>
+    <string name="location">位置</string>
 </resources>
