@@ -5,4 +5,6 @@
     <color name="colorAccent">#DB4437</color>
     <color name="white">#FFFFFF</color>
     <color name="backgroundcolor">#FFFFFF</color>
+    <color name="tabselect">#FFFFFF</color>
+    <color name="tabunselect">#E0E0E0</color>
 </resources>

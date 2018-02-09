@@ -4,11 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <android.support.design.widget.TabLayout
-        android:id="@+id/sliding_tabs"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        >
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="30dp"
+            android:src="@mipmap/ic_launcher"
+            />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/sliding_tabs"
+            style="@style/MyCustomTabLayout"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="70dp" />
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="30dp"
+            android:src="@mipmap/ic_launcher"
+            />
+
+    </LinearLayout>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
