@@ -21,7 +21,7 @@ import me.zhaoweihao.shopping.*
 
 class MomentFragment : Fragment() {
 
-    private var pagerAdapter : MomentFragmentPagerAdapter? = null
+    private var mPagerAdapter: MomentFragmentPagerAdapter? = null
 
     companion object {
 
@@ -42,9 +42,9 @@ class MomentFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pagerAdapter = MomentFragmentPagerAdapter(fragmentManager, activity)
+        mPagerAdapter = MomentFragmentPagerAdapter(fragmentManager, activity)
 
-        viewpager.adapter = pagerAdapter
+        viewpager.adapter = mPagerAdapter
         sliding_tabs.setupWithViewPager(viewpager)
         sliding_tabs.tabMode = TabLayout.MODE_FIXED
     }
@@ -73,6 +73,7 @@ class MomentFragment : Fragment() {
         override fun getPageTitle(position: Int): CharSequence {
             return tabTitles[position]
         }
+
     }
 
 }

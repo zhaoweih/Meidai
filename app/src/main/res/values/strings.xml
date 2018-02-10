@@ -8,4 +8,16 @@
     <string name="dynamic">动态</string>
     <string name="score">评分</string>
     <string name="location">位置</string>
+    <string name="setting">设置</string>
+    <string name="purchasing_number">代购次数</string>
+    <string name="purchasing_location">代购位置</string>
+    <string name="purchasing_score">代购分值</string>
+    <string name="hobby">爱好</string>
+    <string name="collection">收藏</string>
+    <string name="order">订单</string>
+    <string name="to_be_delivered">待发货</string>
+    <string name="to_be_received">待收货</string>
+    <string name="need_to_purchase">需代人</string>
+    <string name="purchase_people">代购人</string>
+    <string name="to_be_commented">待评论</string>
 </resources>

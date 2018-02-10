@@ -7,4 +7,5 @@
     <color name="backgroundcolor">#FFFFFF</color>
     <color name="tabselect">#FFFFFF</color>
     <color name="tabunselect">#E0E0E0</color>
+    <color name="purchasingcolor">#C8C8C8</color>
 </resources>
