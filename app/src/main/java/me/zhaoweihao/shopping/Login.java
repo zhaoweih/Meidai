@@ -1,5 +1,7 @@
 package me.zhaoweihao.shopping;
 
+import com.google.gson.Gson;
+
 /**
  * Created by Administrator on 2018/2/20.
  */
@@ -23,4 +25,8 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    Gson gson = new Gson();
+
+    String[] ints2 = gson.fromJson("[1,2,3,4,5]", String[].class);
 }

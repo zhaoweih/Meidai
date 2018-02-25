@@ -1,4 +1,5 @@
 package me.zhaoweihao.hnuplus
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -12,6 +13,11 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import java.io.IOException
+import com.google.gson.Gson
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_home.*
+import me.zhaoweihao.shopping.adapter.GoodsAdapter
 
 
 /**
@@ -29,7 +35,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_home,
@@ -38,13 +43,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requestWeather()
+        requestGoodsByTag("衣服", rv_cloths)
+        requestGoodsByTag("化妆品", rv_cosmetic)
+        requestGoodsByTag("日用品", rv_daily)
 
     }
 
-    private fun requestWeather() {
+    private fun requestGoodsByTag(tagName: String?, recyclerView: RecyclerView?) {
 
-        val url = "http://meidai.maocanhua.cn/get_goods_by_tag?tagName=%E8%A1%A3%E6%9C%8D&begin=0&num=10"
+        val url = "http://meidai.maocanhua.cn/get_goods_by_tag?tagName=$tagName&begin=0&num=6"
         HttpUtil.sendOkHttpRequest(url, object : Callback {
             override fun onFailure(call: Call, e: IOException) {
 
@@ -53,18 +60,18 @@ class HomeFragment : Fragment() {
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
                 val responseData = response.body()!!.string()
-                Log.d(TAG,responseData)
+                Log.d(TAG, responseData)
                 val goods = Utility.handleGoodsResponse(responseData)
-
-                if (goods != null && goods.code == 200) {
+                if (goods!!.code == 200) {
                     val data = goods.data
-                    if (data != null) {
-                        for ( item in data) {
-                            Log.d(TAG,item.name+" "+ item.pictures)
-                        }
-                    }
+                    activity.runOnUiThread({
+                        recyclerView!!.isNestedScrollingEnabled = false
+                        recyclerView.layoutManager = GridLayoutManager(activity, 3)
+                        val adapter = GoodsAdapter(data!!)
+                        recyclerView.adapter = adapter
+                    })
                 } else {
-                    Log.d(TAG,"failed")
+                    Log.d(TAG, "failed")
                 }
             }
         })
