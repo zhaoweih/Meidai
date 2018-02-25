@@ -1,0 +1,24 @@
+package me.zhaoweihao.shopping.utils
+
+
+import com.google.gson.Gson
+import me.zhaoweihao.shopping.gson.Goods
+
+
+/**
+ * Created by Zhaoweihao on 2018/1/6.
+ */
+
+object Utility {
+    fun handleGoodsResponse(response: String): Goods? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, Goods::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
+}
