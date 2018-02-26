@@ -13,7 +13,6 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import java.io.IOException
-import org.litepal.crud.DataSupport
 
 
 
@@ -55,6 +54,7 @@ class LoginActivity : AppCompatActivity() {
                         val userInfoFromDatabase = UserInfo()
                         val userInfoFromResponse = user.userData!!.userInfo
                         userInfoFromDatabase.userId = userInfoFromResponse!!.userId
+                        userInfoFromDatabase.userName = userInfoFromResponse.userName
                         userInfoFromDatabase.userPhone = userInfoFromResponse.userPhone
                         userInfoFromDatabase.userSex = userInfoFromResponse.userSex
                         userInfoFromDatabase.userAvator = userInfoFromResponse.userAvator

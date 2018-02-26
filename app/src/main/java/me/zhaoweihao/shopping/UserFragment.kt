@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.android.synthetic.main.goods_item.*
 import me.zhaoweihao.shopping.constant.Constant.baseUrl
 import me.zhaoweihao.shopping.litepal.UserInfo
 import org.litepal.crud.DataSupport
@@ -29,18 +30,48 @@ class UserFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        Log.d(TAG,"onCreateView")
         return inflater!!.inflate(R.layout.fragment_user, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+            btn_login.setOnClickListener {
+                val intent = Intent(activity,LoginActivity::class.java)
+                startActivity(intent)
+            }
+    }
 
-        iv_avatar.setOnClickListener {
-            val intent = Intent(activity,LoginActivity::class.java)
-            activity.startActivity(intent)
-
-        }
-
+    private fun hideOrShowComponents(code: Int) {
+        iv_avatar.visibility = code
+        imageView3.visibility = code
+        tv_usercoin.visibility = code
+        tv_userauthenticated.visibility = code
+        tv_phone.visibility = code
+        tv_location.visibility = code
+        tv_username.visibility = code
+        tv_setting.visibility = code
+        imageButton2.visibility = code
+        textView7.visibility = code
+        textView9.visibility = code
+        textView11.visibility = code
+        imageView4.visibility = code
+        textView13.visibility = code
+        imageView5.visibility = code
+        textView14.visibility = code
+        imageView6.visibility = code
+        textView15.visibility = code
+        view1.visibility = code
+        imageView7.visibility = code
+        textView16.visibility = code
+        imageView8.visibility = code
+        textView17.visibility = code
+        imageView9.visibility = code
+        textView18.visibility = code
+        imageView10.visibility = code
+        textView19.visibility = code
+        imageView11.visibility = code
+        textView20.visibility = code
     }
 
     override fun onResume() {
@@ -48,6 +79,7 @@ class UserFragment : Fragment() {
         Log.d(TAG,"onResume")
         val find = DataSupport.find(UserInfo::class.java, 1)
         if (find != null) {
+
             tv_username.text = find.userName
             Log.d(TAG, find.userName)
             tv_location.text = find.userAddressMore
@@ -63,8 +95,14 @@ class UserFragment : Fragment() {
             } else {
                 tv_userauthenticated.text = "未实名"
             }
+            hideOrShowComponents(View.VISIBLE)
+            tv_not_login.visibility = View.INVISIBLE
+            btn_login.visibility = View.INVISIBLE
         } else {
             Log.d(TAG,"bad")
+            hideOrShowComponents(View.INVISIBLE)
+            tv_not_login.visibility = View.VISIBLE
+            btn_login.visibility = View.VISIBLE
         }
 
 
