@@ -14,10 +14,12 @@ class User {
     class UserData {
         @SerializedName("user")
         var userInfo: UserInfo? = null
-        var token: String? = null
+        @SerializedName("token")
+        var userToken: String? = null
 
         class UserInfo {
-            var id: Int = 0
+            @SerializedName("id")
+            var userId: Int = 0
             @SerializedName("user_name")
             var userName: String? = null
             @SerializedName("user_phone")
@@ -44,8 +46,6 @@ class User {
             var userAddress: String? = null
             @SerializedName("user_address_more")
             var userAddressMore: String? = null
-            @SerializedName("token")
-            var userToken: String? = null
         }
 
     }

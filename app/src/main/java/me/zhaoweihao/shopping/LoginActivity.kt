@@ -6,12 +6,16 @@ import android.util.Log
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_login.*
 import me.zhaoweihao.shopping.gson.Login
+import me.zhaoweihao.shopping.litepal.UserInfo
 import me.zhaoweihao.shopping.utils.HttpUtil
 import me.zhaoweihao.shopping.utils.Utility
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import java.io.IOException
+import org.litepal.crud.DataSupport
+
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -48,11 +52,46 @@ class LoginActivity : AppCompatActivity() {
                     val user = Utility.handleUserResponse(responseData)
                     if (user!!.code == 200) {
                         Log.d(TAG, user.userData!!.userInfo!!.userPhone)
+                        val userInfoFromDatabase = UserInfo()
+                        val userInfoFromResponse = user.userData!!.userInfo
+                        userInfoFromDatabase.userId = userInfoFromResponse!!.userId
+                        userInfoFromDatabase.userPhone = userInfoFromResponse.userPhone
+                        userInfoFromDatabase.userSex = userInfoFromResponse.userSex
+                        userInfoFromDatabase.userAvator = userInfoFromResponse.userAvator
+                        userInfoFromDatabase.userRank = userInfoFromResponse.userRank
+                        userInfoFromDatabase.userStatus = userInfoFromResponse.userStatus
+                        userInfoFromDatabase.userCoin = userInfoFromResponse.userCoin
+                        userInfoFromDatabase.userRegisterDate = userInfoFromResponse.userRegisterDate
+                        userInfoFromDatabase.userAuthenticated = userInfoFromResponse.userAuthenticated
+                        userInfoFromDatabase.userRealName = userInfoFromResponse.userRealName
+                        userInfoFromDatabase.userRealIdentityCard = userInfoFromResponse.userRealIdentityCard
+                        userInfoFromDatabase.userAddress = userInfoFromResponse.userAddress
+                        userInfoFromDatabase.userAddressMore = userInfoFromResponse.userAddressMore
+                        userInfoFromDatabase.userToken = user.userData!!.userToken
+                        userInfoFromDatabase.save()
+                        finish()
                     } else {
                         Log.d(TAG, "failed")
                     }
                 }
             })
         }
+
+//        login_btn.setOnClickListener {
+//            val find = DataSupport.find(UserInfo::class.java, 1)
+//            if (find == null) {
+//                Log.d(TAG,"empty database")
+//                val userInfo = UserInfo()
+//                userInfo.userName = "zhaoweihao"
+//                userInfo.save()
+//            } else {
+//                Log.d(TAG,"good")
+//            }
+////            val find = DataSupport.findAll<UserInfo>(UserInfo::class.java)[0]
+////            Log.d(TAG,find.userName)
+//        }
+
+
     }
+
 }

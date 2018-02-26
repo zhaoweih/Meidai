@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import me.zhaoweihao.shopping.R
+import me.zhaoweihao.shopping.constant.Constant.baseUrl
 import me.zhaoweihao.shopping.gson.Goods.Data
 
 
@@ -24,8 +25,6 @@ class GoodsAdapter(private val mGoodsList: List<Data>) : RecyclerView.Adapter<Go
     private var mContext: Context? = null
 
     private var gson: Gson? =null
-
-    val baseUrl = "http://meidai.maocanhua.cn/"
 
     val TAG = "GoodsAdapter"
 

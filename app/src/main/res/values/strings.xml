@@ -9,9 +9,9 @@
     <string name="score">评分</string>
     <string name="location">位置</string>
     <string name="setting">设置</string>
-    <string name="purchasing_number">代购次数</string>
+    <string name="purchasing_coin">美代币</string>
     <string name="purchasing_location">代购位置</string>
-    <string name="purchasing_score">代购分值</string>
+    <string name="purchasing_authenticated">实名制</string>
     <string name="hobby">爱好</string>
     <string name="collection">收藏</string>
     <string name="order">订单</string>

@@ -12,7 +12,8 @@ class Goods {
     var data: List<Data>? = null
 
     class Data {
-        var id: Int = 0
+        @SerializedName("id")
+        var goodsId: Int = 0
         @SerializedName("g_tag")
         var tag: String? = null
         @SerializedName("g_description")
