@@ -12,7 +12,7 @@ import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import me.zhaoweihao.shopping.R
-import me.zhaoweihao.shopping.gson.Data
+import me.zhaoweihao.shopping.gson.Goods.Data
 
 
 /**

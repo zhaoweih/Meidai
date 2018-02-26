@@ -13,7 +13,6 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import java.io.IOException
-import com.google.gson.Gson
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -52,7 +51,7 @@ class HomeFragment : Fragment() {
     private fun requestGoodsByTag(tagName: String?, recyclerView: RecyclerView?) {
 
         val url = "http://meidai.maocanhua.cn/get_goods_by_tag?tagName=$tagName&begin=0&num=6"
-        HttpUtil.sendOkHttpRequest(url, object : Callback {
+        HttpUtil.sendOkHttpGetRequest(url, object : Callback {
             override fun onFailure(call: Call, e: IOException) {
 
             }
