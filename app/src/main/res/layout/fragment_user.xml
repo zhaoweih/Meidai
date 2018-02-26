@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -176,9 +175,9 @@
         android:layout_marginTop="8dp"
         android:text="@string/hobby"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintEnd_toEndOf="@id/imageView4"
+        app:layout_constraintStart_toStartOf="@id/imageView4"
+        app:layout_constraintTop_toBottomOf="@id/imageView4" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -196,16 +195,16 @@
         android:layout_marginTop="8dp"
         android:text="@string/order"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintEnd_toEndOf="@id/imageView5"
+        app:layout_constraintStart_toStartOf="@id/imageView5"
+        app:layout_constraintTop_toBottomOf="@id/imageView5" />
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toStartOf="@id/imageView5"
+        app:layout_constraintStart_toEndOf="@id/imageView4"
+        app:layout_constraintTop_toTopOf="@id/imageView4"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
@@ -215,9 +214,9 @@
         android:layout_marginTop="8dp"
         android:text="@string/collection"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintEnd_toEndOf="@id/imageView6"
+        app:layout_constraintStart_toStartOf="@id/imageView6"
+        app:layout_constraintTop_toBottomOf="@id/imageView6" />
 
     <View
         android:id="@+id/view"
@@ -233,9 +232,9 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintEnd_toStartOf="@id/imageView9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@id/view"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
@@ -245,9 +244,9 @@
         android:layout_marginTop="8dp"
         android:text="@string/to_be_delivered"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView7"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintEnd_toEndOf="@id/imageView7"
+        app:layout_constraintStart_toStartOf="@id/imageView7"
+        app:layout_constraintTop_toBottomOf="@id/imageView7" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -256,8 +255,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@id/imageView10"
+        app:layout_constraintTop_toBottomOf="@id/view"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
@@ -267,18 +266,18 @@
         android:layout_marginTop="8dp"
         android:text="@string/to_be_commented"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintStart_toStartOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintEnd_toEndOf="@id/imageView8"
+        app:layout_constraintStart_toStartOf="@id/imageView8"
+        app:layout_constraintTop_toBottomOf="@id/imageView8" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView11"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@id/imageView11"
+        app:layout_constraintStart_toEndOf="@id/imageView7"
+        app:layout_constraintTop_toBottomOf="@id/view"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
@@ -288,18 +287,18 @@
         android:layout_marginTop="8dp"
         android:text="@string/to_be_received"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+        app:layout_constraintEnd_toEndOf="@id/imageView9"
+        app:layout_constraintStart_toStartOf="@id/imageView9"
+        app:layout_constraintTop_toBottomOf="@id/imageView9" />
 
     <ImageView
         android:id="@+id/imageView10"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@id/imageView8"
+        app:layout_constraintStart_toEndOf="@id/imageView11"
+        app:layout_constraintTop_toBottomOf="@id/view"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
@@ -309,18 +308,18 @@
         android:layout_marginTop="8dp"
         android:text="@string/purchase_people"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+        app:layout_constraintEnd_toEndOf="@id/imageView10"
+        app:layout_constraintStart_toStartOf="@id/imageView10"
+        app:layout_constraintTop_toBottomOf="@id/imageView10" />
 
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView10"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@id/imageView10"
+        app:layout_constraintStart_toEndOf="@id/imageView9"
+        app:layout_constraintTop_toBottomOf="@id/view"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
@@ -330,8 +329,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/need_to_purchase"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintStart_toStartOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+        app:layout_constraintEnd_toEndOf="@id/imageView11"
+        app:layout_constraintStart_toStartOf="@id/imageView11"
+        app:layout_constraintTop_toBottomOf="@id/imageView11" />
 
 </android.support.constraint.ConstraintLayout>
