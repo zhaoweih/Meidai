@@ -2,10 +2,11 @@ package me.zhaoweihao.shopping
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_good.*
-import me.zhaoweihao.shopping.utils.PicassoImageLoader
+import com.daimajia.slider.library.SliderTypes.TextSliderView
+import me.zhaoweihao.shopping.constant.Constant
+
 
 class GoodActivity : AppCompatActivity() {
 
@@ -42,15 +43,17 @@ class GoodActivity : AppCompatActivity() {
         tv_good_seller_name.text = userName
         tv_good_description.text = goodDescription
 
-        //设置图片加载器
-        iv_good.setImageLoader(PicassoImageLoader())
         val imageUrls =Gson().fromJson(goodPictures, Array<String>::class.java)
-        //设置图片集合
-        iv_good.setImages(imageUrls.toList())
-        //banner设置方法全部调用完毕时最后调用
-        iv_good.start()
 
+        for ( url in imageUrls ) {
+            val textSliderView = TextSliderView(this)
+            textSliderView.image(Constant.baseUrl+url)
 
+            iv_good.addSlider(textSliderView)
+        }
+
+        iv_good.stopAutoCycle()
 
     }
+
 }

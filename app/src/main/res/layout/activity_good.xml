@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="me.zhaoweihao.shopping.GoodActivity">
 
-    <com.youth.banner.Banner
+    <com.daimajia.slider.library.SliderLayout
         android:id="@+id/iv_good"
         android:layout_width="0dp"
         android:layout_height="400dp"
