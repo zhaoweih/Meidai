@@ -42,9 +42,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        requestGoodsByTag("衣服", rv_cloths)
-//        requestGoodsByTag("化妆品", rv_cosmetic)
-//        requestGoodsByTag("日用品", rv_daily)
+        requestGoodsByTag("衣服", rv_cloths)
+        requestGoodsByTag("化妆品", rv_cosmetic)
+        requestGoodsByTag("日用品", rv_daily)
 
     }
 

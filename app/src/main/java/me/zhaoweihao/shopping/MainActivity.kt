@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         hideFragments(transaction)
         when (index) {
             0 -> {
-                home_image!!.setImageResource(R.mipmap.ic_launcher)
+                home_image!!.setImageResource(R.drawable.home)
                 if (mHomeFragment == null) {
                     mHomeFragment = HomeFragment.newInstance()
                     transaction.add(R.id.content, mHomeFragment)
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             1 -> {
-                contact_image!!.setImageResource(R.mipmap.ic_launcher)
+                contact_image!!.setImageResource(R.drawable.contact)
                 if (mContactFragment == null) {
                     mContactFragment = ContactFragment.newInstance()
                     transaction.add(R.id.content, mContactFragment)
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             2 -> {
-                moment_image!!.setImageResource(R.mipmap.ic_launcher)
+                moment_image!!.setImageResource(R.drawable.moment)
                 if (mMomentFragment == null) {
                     mMomentFragment = MomentFragment.newInstance()
                     transaction.add(R.id.content, mMomentFragment)
@@ -87,9 +87,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearSelection() {
-        home_image!!.setImageResource(R.mipmap.ic_launcher)
-        contact_image!!.setImageResource(R.mipmap.ic_launcher)
-        moment_image!!.setImageResource(R.mipmap.ic_launcher)
+        home_image!!.setImageResource(R.drawable.home)
+        contact_image!!.setImageResource(R.drawable.contact)
+        moment_image!!.setImageResource(R.drawable.moment)
         user_image!!.setImageResource(R.mipmap.ic_launcher)
     }
 

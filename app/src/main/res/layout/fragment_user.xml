@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,6 +26,7 @@
         android:text="你还没有登录"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/frameLayout"
         app:layout_constraintEnd_toEndOf="@id/frameLayout"
         app:layout_constraintStart_toStartOf="@id/frameLayout"
@@ -36,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="登录"
+        android:visibility="invisible"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@id/frameLayout"
         app:layout_constraintStart_toStartOf="@id/frameLayout"
@@ -70,8 +73,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="64dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_username"
@@ -83,7 +85,7 @@
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@id/iv_avatar"
         app:layout_constraintTop_toTopOf="@id/iv_avatar"
-        android:text="夏天" />
+        tools:text="夏天" />
 
     <TextView
         android:id="@+id/tv_phone"
@@ -91,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="12345678910@qq.com"
+        tools:text="12345678910@qq.com"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@id/iv_avatar"
@@ -123,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="25"
+        tools:text="25"
         android:textColor="@color/purchasingcolor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/textView7"
@@ -147,7 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="82"
+        tools:text="82"
         android:textColor="@color/purchasingcolor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/textView9"
@@ -172,7 +174,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="香港"
+        tools:text="香港"
         android:textColor="@color/purchasingcolor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/textView11"
@@ -250,14 +252,14 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@id/imageView9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view1"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@drawable/to_be_delivered" />
 
     <TextView
         android:id="@+id/textView16"
@@ -272,14 +274,14 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageView10"
         app:layout_constraintTop_toBottomOf="@id/view1"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@drawable/to_be_commented" />
 
     <TextView
         android:id="@+id/textView17"
@@ -294,13 +296,13 @@
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@id/imageView11"
         app:layout_constraintStart_toEndOf="@id/imageView7"
         app:layout_constraintTop_toBottomOf="@id/view1"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@drawable/to_be_received" />
 
     <TextView
         android:id="@+id/textView18"
@@ -315,8 +317,8 @@
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@id/imageView8"
         app:layout_constraintStart_toEndOf="@id/imageView11"
@@ -336,13 +338,13 @@
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@id/imageView10"
         app:layout_constraintStart_toEndOf="@id/imageView9"
         app:layout_constraintTop_toBottomOf="@id/view1"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@drawable/need_to_purchase" />
 
     <TextView
         android:id="@+id/textView20"
