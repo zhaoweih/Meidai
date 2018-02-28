@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         hideFragments(transaction)
         when (index) {
             0 -> {
-                home_image!!.setImageResource(R.drawable.home)
+                home_image!!.setImageResource(R.drawable.home_clicked)
                 if (mHomeFragment == null) {
                     mHomeFragment = HomeFragment.newInstance()
                     transaction.add(R.id.content, mHomeFragment)
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             1 -> {
-                contact_image!!.setImageResource(R.drawable.contact)
+                contact_image!!.setImageResource(R.drawable.contact_clicked)
                 if (mContactFragment == null) {
                     mContactFragment = ContactFragment.newInstance()
                     transaction.add(R.id.content, mContactFragment)
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             2 -> {
-                moment_image!!.setImageResource(R.drawable.moment)
+                moment_image!!.setImageResource(R.drawable.moment_clicked)
                 if (mMomentFragment == null) {
                     mMomentFragment = MomentFragment.newInstance()
                     transaction.add(R.id.content, mMomentFragment)
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             3 -> {
-                user_image!!.setImageResource(R.mipmap.ic_launcher)
+                user_image!!.setImageResource(R.drawable.user_clicked)
                 if (mUserFragment == null) {
                     mUserFragment = UserFragment.newInstance()
                     transaction.add(R.id.content, mUserFragment)
