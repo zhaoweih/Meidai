@@ -30,12 +30,12 @@ class GoodActivity : AppCompatActivity() {
 
         val intent = intent
 
-        val goodId =intent.getIntExtra("id",0)
+        val goodId = intent.getIntExtra("id", 0)
         val goodTag = intent.getStringExtra("tag")
         val goodDescription = intent.getStringExtra("description")
-        val goodPrice = intent.getIntExtra("price",0)
+        val goodPrice = intent.getIntExtra("price", 0)
         val goodName = intent.getStringExtra("name")
-        val goodSellerId = intent.getIntExtra("sellerId",0)
+        val goodSellerId = intent.getIntExtra("sellerId", 0)
         val goodAddress = intent.getStringExtra("address")
         val goodPictures = intent.getStringExtra("pictures")
         val goodDate = intent.getStringExtra("date")
@@ -58,11 +58,11 @@ class GoodActivity : AppCompatActivity() {
         tv_good_seller_name.text = userName
         tv_good_description.text = goodDescription
 
-        val imageUrls =Gson().fromJson(goodPictures, Array<String>::class.java)
+        val imageUrls = Gson().fromJson(goodPictures, Array<String>::class.java)
 
-        for ( url in imageUrls ) {
+        for (url in imageUrls) {
             val textSliderView = TextSliderView(this)
-            textSliderView.image(Constant.baseUrl+url)
+            textSliderView.image(Constant.baseUrl + url)
 
             iv_good.addSlider(textSliderView)
         }
@@ -70,25 +70,25 @@ class GoodActivity : AppCompatActivity() {
         iv_good.stopAutoCycle()
 
         btn_buy.setOnClickListener {
-            val intent = Intent(this,BuyActivity::class.java)
+            val intent = Intent(this, BuyActivity::class.java)
             val buyNum = et_buy_num.text.toString().toInt()
-            val totalPrice = goodPrice*buyNum
-            intent.putExtra("id",goodId)
+            val totalPrice = goodPrice * buyNum
+            intent.putExtra("id", goodId)
             intent.putExtra("sellerId", goodSellerId)
-            intent.putExtra("singlePrice",goodPrice)
-            intent.putExtra("totalPrice",totalPrice)
-            intent.putExtra("buyNum",buyNum)
-            intent.putExtra("leaveMessage",leaveMessage)
-            intent.putExtra("goodName",goodName)
+            intent.putExtra("singlePrice", goodPrice)
+            intent.putExtra("totalPrice", totalPrice)
+            intent.putExtra("buyNum", buyNum)
+            intent.putExtra("leaveMessage", leaveMessage)
+            intent.putExtra("goodName", goodName)
             startActivity(intent)
 
         }
 
         val find = DataSupport.find(UserInfo::class.java, 1)
 
-        if ( find != null) {
+        if (find != null) {
             val userId = find.userId
-            val isFollowUrl = Constant.baseUrl+"isfollow?follow=$userId&leader=$goodSellerId"
+            val isFollowUrl = Constant.baseUrl + "isfollow?follow=$userId&leader=$goodSellerId"
 
             HttpUtil.sendOkHttpGetRequest(isFollowUrl, object : Callback {
                 override fun onFailure(call: Call?, e: IOException?) {
@@ -111,9 +111,9 @@ class GoodActivity : AppCompatActivity() {
 
             })
 
-            val isCollectedUrl = Constant.baseUrl+"iscollected?id=$userId&gid=$goodId"
+            val isCollectedUrl = Constant.baseUrl + "iscollected?id=$userId&gid=$goodId"
 
-            HttpUtil.sendOkHttpGetRequest(isCollectedUrl,object : Callback {
+            HttpUtil.sendOkHttpGetRequest(isCollectedUrl, object : Callback {
                 override fun onFailure(call: Call?, e: IOException?) {
 
                 }
@@ -134,8 +134,101 @@ class GoodActivity : AppCompatActivity() {
                 }
 
             })
-        }
 
+            btn_follow.setOnClickListener {
+
+                val setFollowUrl = Constant.baseUrl + "follow?follow=$userId&leader=$goodSellerId"
+
+                HttpUtil.sendOkHttpGetRequest(setFollowUrl, object : Callback {
+                    override fun onFailure(call: Call?, e: IOException?) {
+
+                    }
+
+                    override fun onResponse(call: Call?, response: Response?) {
+                        val responseData = response!!.body()!!.string()
+                        val returnData = Utility.handleFollowResponse(responseData)
+                        if (returnData!!.code == 200) {
+                            runOnUiThread {
+                                btn_follow.visibility = View.GONE
+                                btn_isfollowed.visibility = View.VISIBLE
+                            }
+                        }
+                        Log.d(TAG, responseData)
+                    }
+
+                })
+
+            }
+
+            btn_isfollowed.setOnClickListener {
+                val cancelFollowUrl = Constant.baseUrl + "cancel_follow?follow=$userId&leader=$goodSellerId"
+                HttpUtil.sendOkHttpGetRequest(cancelFollowUrl, object : Callback {
+                    override fun onFailure(call: Call?, e: IOException?) {
+
+                    }
+
+                    override fun onResponse(call: Call?, response: Response?) {
+                        val responseData = response!!.body()!!.string()
+                        val returnData = Utility.handleIsFollowResponse(responseData)
+                        if ( returnData!!.code == 200) {
+                            runOnUiThread {
+                                btn_isfollowed.visibility = View.GONE
+                                btn_follow.visibility = View.VISIBLE
+                            }
+                        }
+                        Log.d(TAG, responseData)
+                    }
+
+                })
+            }
+
+            btn_collect.setOnClickListener {
+                val setCollectUrl = Constant.baseUrl + "collect?id=$userId&gid=$goodId"
+                HttpUtil.sendOkHttpGetRequest(setCollectUrl, object : Callback {
+                    override fun onFailure(call: Call?, e: IOException?) {
+
+                    }
+
+                    override fun onResponse(call: Call?, response: Response?) {
+                        val responseData = response!!.body()!!.string()
+                        val returnData = Utility.handleFollowResponse(responseData)
+                        if (returnData!!.code == 200) {
+                            runOnUiThread {
+                                btn_collect.visibility = View.GONE
+                                btn_iscollected.visibility = View.VISIBLE
+                            }
+                        }
+                        Log.d(TAG, responseData)
+                    }
+
+                })
+            }
+
+            btn_iscollected.setOnClickListener {
+                val cancelCollectUrl = Constant.baseUrl + "cancel_collected?id=$userId&gid=$goodId"
+
+                HttpUtil.sendOkHttpGetRequest(cancelCollectUrl, object : Callback {
+                    override fun onFailure(call: Call?, e: IOException?) {
+
+                    }
+
+                    override fun onResponse(call: Call?, response: Response?) {
+                        val responseData = response!!.body()!!.string()
+                        val returnData = Utility.handleIsFollowResponse(responseData)
+                        if (returnData!!.code == 200) {
+                            runOnUiThread {
+                                btn_iscollected.visibility = View.GONE
+                                btn_collect.visibility = View.VISIBLE
+                            }
+                        }
+                        Log.d(TAG, responseData)
+                    }
+
+                })
+            }
+        } else {
+            Log.d(TAG, "find is null")
+        }
 
 
     }

@@ -2,6 +2,7 @@ package me.zhaoweihao.shopping.utils
 
 
 import com.google.gson.Gson
+import me.zhaoweihao.shopping.gson.Follow
 import me.zhaoweihao.shopping.gson.Goods
 import me.zhaoweihao.shopping.gson.IsFollow
 import me.zhaoweihao.shopping.gson.User
@@ -38,6 +39,17 @@ object Utility {
         try {
             val gson = Gson()
             return gson.fromJson(response, IsFollow::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
+    fun handleFollowResponse(response: String): Follow? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, Follow::class.java)
         } catch (e: Exception) {
             e.printStackTrace()
         }
