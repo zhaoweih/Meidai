@@ -138,5 +138,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_buy_num" />
 
+        <Button
+            android:id="@+id/btn_isfollowed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="已关注"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_leave_message" />
+
+        <Button
+            android:id="@+id/btn_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关注"
+            app:layout_constraintStart_toEndOf="@+id/btn_isfollowed"
+            app:layout_constraintTop_toTopOf="@+id/btn_isfollowed" />
+
+        <Button
+            android:id="@+id/btn_iscollected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="已收藏"
+            app:layout_constraintStart_toEndOf="@+id/btn_follow"
+            app:layout_constraintTop_toTopOf="@+id/btn_isfollowed" />
+
+        <Button
+            android:id="@+id/btn_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="收藏"
+            app:layout_constraintStart_toEndOf="@+id/btn_iscollected"
+            app:layout_constraintTop_toTopOf="@+id/btn_follow" />
+
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

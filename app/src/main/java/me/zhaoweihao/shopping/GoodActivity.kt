@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_good.*
 import com.daimajia.slider.library.SliderTypes.TextSliderView
@@ -13,10 +14,10 @@ import me.zhaoweihao.shopping.litepal.UserInfo
 import me.zhaoweihao.shopping.utils.HttpUtil
 import me.zhaoweihao.shopping.utils.Utility
 import okhttp3.Call
+import okhttp3.Callback
 import okhttp3.Response
 import org.litepal.crud.DataSupport
 import java.io.IOException
-import javax.security.auth.callback.Callback
 
 
 class GoodActivity : AppCompatActivity() {
@@ -82,6 +83,60 @@ class GoodActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+        val find = DataSupport.find(UserInfo::class.java, 1)
+
+        if ( find != null) {
+            val userId = find.userId
+            val isFollowUrl = Constant.baseUrl+"isfollow?follow=$userId&leader=$goodSellerId"
+
+            HttpUtil.sendOkHttpGetRequest(isFollowUrl, object : Callback {
+                override fun onFailure(call: Call?, e: IOException?) {
+                }
+
+                override fun onResponse(call: Call?, response: Response?) {
+                    val responseData = response!!.body()!!.string()
+                    val isFollow = Utility.handleIsFollowResponse(responseData)
+                    runOnUiThread {
+                        if (isFollow!!.data!!) {
+                            btn_follow.visibility = View.GONE
+                            btn_isfollowed.visibility = View.VISIBLE
+                        } else {
+                            btn_follow.visibility = View.VISIBLE
+                            btn_isfollowed.visibility = View.GONE
+                        }
+                    }
+                    Log.d(TAG, responseData)
+                }
+
+            })
+
+            val isCollectedUrl = Constant.baseUrl+"iscollected?id=$userId&gid=$goodId"
+
+            HttpUtil.sendOkHttpGetRequest(isCollectedUrl,object : Callback {
+                override fun onFailure(call: Call?, e: IOException?) {
+
+                }
+
+                override fun onResponse(call: Call?, response: Response?) {
+                    val responseData = response!!.body()!!.string()
+                    val isCollected = Utility.handleIsFollowResponse(responseData)
+                    runOnUiThread {
+                        if (isCollected!!.data!!) {
+                            btn_collect.visibility = View.GONE
+                            btn_iscollected.visibility = View.VISIBLE
+                        } else {
+                            btn_collect.visibility = View.VISIBLE
+                            btn_iscollected.visibility = View.GONE
+                        }
+                    }
+                    Log.d(TAG, responseData)
+                }
+
+            })
+        }
+
+
 
     }
 
