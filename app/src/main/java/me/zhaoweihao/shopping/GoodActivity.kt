@@ -1,11 +1,22 @@
 package me.zhaoweihao.shopping
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_good.*
 import com.daimajia.slider.library.SliderTypes.TextSliderView
 import me.zhaoweihao.shopping.constant.Constant
+import me.zhaoweihao.shopping.gson.Trade
+import me.zhaoweihao.shopping.litepal.UserInfo
+import me.zhaoweihao.shopping.utils.HttpUtil
+import me.zhaoweihao.shopping.utils.Utility
+import okhttp3.Call
+import okhttp3.Response
+import org.litepal.crud.DataSupport
+import java.io.IOException
+import javax.security.auth.callback.Callback
 
 
 class GoodActivity : AppCompatActivity() {
@@ -35,6 +46,9 @@ class GoodActivity : AppCompatActivity() {
         val userName = intent.getStringExtra("userName")
         val userAvator = intent.getStringExtra("userAvator")
 
+
+        val leaveMessage = et_leave_message.text.toString()
+
         tv_good_name.text = goodName
         tv_good_price.text = goodPrice.toString()
         tv_good_address.text = goodAddress
@@ -53,6 +67,21 @@ class GoodActivity : AppCompatActivity() {
         }
 
         iv_good.stopAutoCycle()
+
+        btn_buy.setOnClickListener {
+            val intent = Intent(this,BuyActivity::class.java)
+            val buyNum = et_buy_num.text.toString().toInt()
+            val totalPrice = goodPrice*buyNum
+            intent.putExtra("id",goodId)
+            intent.putExtra("sellerId", goodSellerId)
+            intent.putExtra("singlePrice",goodPrice)
+            intent.putExtra("totalPrice",totalPrice)
+            intent.putExtra("buyNum",buyNum)
+            intent.putExtra("leaveMessage",leaveMessage)
+            intent.putExtra("goodName",goodName)
+            startActivity(intent)
+
+        }
 
     }
 

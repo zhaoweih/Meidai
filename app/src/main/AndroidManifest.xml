@@ -3,7 +3,6 @@
     package="me.zhaoweihao.shopping">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -21,8 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".GoodActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".GoodActivity" />
+        <activity android:name=".BuyActivity"></activity>
     </application>
 
 </manifest>
