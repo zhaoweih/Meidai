@@ -2,9 +2,14 @@ package me.zhaoweihao.shopping
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import kotlinx.android.synthetic.main.activity_collection.*
 import kotlinx.android.synthetic.main.activity_good.*
+import me.zhaoweihao.shopping.adapter.CollectionsAdapter
+import me.zhaoweihao.shopping.adapter.GoodsAdapter
 import me.zhaoweihao.shopping.constant.Constant
 import me.zhaoweihao.shopping.litepal.UserInfo
 import me.zhaoweihao.shopping.utils.HttpUtil
@@ -37,7 +42,16 @@ class CollectionActivity : AppCompatActivity() {
                 override fun onResponse(call: Call?, response: Response?) {
                     val responseData = response!!.body()!!.string()
                     val collections = Utility.handleCollectionsResponse(responseData)
-
+                    if (collections!!.code == 200) {
+                        val data = collections.data
+                       runOnUiThread({
+                            rv_collections.layoutManager = GridLayoutManager(this@CollectionActivity, 1) as RecyclerView.LayoutManager?
+                            val adapter = CollectionsAdapter(data!!)
+                            rv_collections.adapter = adapter
+                        })
+                    } else {
+                        Log.d(TAG, "failed")
+                    }
                     Log.d(TAG, responseData)
                 }
 

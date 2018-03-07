@@ -35,6 +35,7 @@ class GoodsAdapter(private val mGoodsList: List<Data>) : RecyclerView.Adapter<Go
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var goodsImage = view.findViewById<ImageView>(R.id.iv_goods)
         var goodsName = view.findViewById<TextView>(R.id.tv_goods)
+        var goodsPrice = view.findViewById<TextView>(R.id.tv_goods_price)
         var goodsView: View = view
     }
 
@@ -87,6 +88,7 @@ class GoodsAdapter(private val mGoodsList: List<Data>) : RecyclerView.Adapter<Go
                 .centerCrop()
                 .into(holder.goodsImage)
         holder.goodsName.text = good.name
+        holder.goodsPrice.text = good.price.toString()
 
     }
 
