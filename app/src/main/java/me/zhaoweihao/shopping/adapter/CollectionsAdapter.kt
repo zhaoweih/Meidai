@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
+import me.zhaoweihao.shopping.CollectionActivity
 import me.zhaoweihao.shopping.GoodActivity
 import me.zhaoweihao.shopping.MainActivity
 import me.zhaoweihao.shopping.R
@@ -52,28 +53,28 @@ class CollectionsAdapter(private val mCollectionsList: List<Collections.Data>) :
         val holder = ViewHolder(view)
 
         holder.collectionsView.setOnClickListener {
-//            val position = holder.adapterPosition
-//            val good = mGoodsList[position]
-//            Log.d(TAG, good.name)
-//            val intent = Intent(mContext, GoodActivity::class.java)
-//            intent.putExtra("id",good.goodsId)
-//            intent.putExtra("tag",good.tag)
-//            intent.putExtra("description",good.description)
-//            intent.putExtra("price", good.price)
-//            intent.putExtra("name", good.name)
-//            intent.putExtra("sellerId",good.sellerId)
-//            intent.putExtra("address", good.address)
-//            intent.putExtra("pictures", good.pictures)
-//            intent.putExtra("date", good.date)
-//            intent.putExtra("num", good.num)
-//            intent.putExtra("sellCount", good.sellCount)
-//            intent.putExtra("status", good.status)
-//            intent.putExtra("keyword", good.keyword)
-//            intent.putExtra("level", good.level)
-//            intent.putExtra("userName", good.userName)
-//            intent.putExtra("userAvator", good.userAvator)
-//
-//            (mContext as MainActivity).startActivity(intent)
+            val position = holder.adapterPosition
+            val collection = mCollectionsList[position]
+            Log.d(TAG, collection.name)
+            val intent = Intent(mContext, GoodActivity::class.java)
+            intent.putExtra("id",collection.collectionsId)
+            intent.putExtra("tag",collection.tag)
+            intent.putExtra("description",collection.description)
+            intent.putExtra("price", collection.price)
+            intent.putExtra("name", collection.name)
+            intent.putExtra("sellerId",collection.sellerId)
+            intent.putExtra("address", collection.address)
+            intent.putExtra("pictures", collection.pictures)
+            intent.putExtra("date", collection.date)
+            intent.putExtra("num", collection.num)
+            intent.putExtra("sellCount", collection.sellCount)
+            intent.putExtra("status", collection.status)
+            intent.putExtra("keyword", collection.keyword)
+            intent.putExtra("level", collection.level)
+            intent.putExtra("userName", collection.userName)
+            intent.putExtra("userAvator", collection.userAvator)
+
+            (mContext as CollectionActivity).startActivity(intent)
 
 
 
