@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         home_image!!.setImageResource(R.drawable.home)
         contact_image!!.setImageResource(R.drawable.contact)
         moment_image!!.setImageResource(R.drawable.moment)
-        user_image!!.setImageResource(R.mipmap.ic_launcher)
+        user_image!!.setImageResource(R.drawable.user)
     }
 
     private fun hideFragments(transaction: FragmentTransaction) {

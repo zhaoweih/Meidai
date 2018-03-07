@@ -223,7 +223,7 @@
         app:layout_constraintStart_toStartOf="@id/imageView5"
         app:layout_constraintTop_toBottomOf="@id/imageView5" />
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/iv_user_collect"
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:layout_constraintEnd_toStartOf="@id/imageView5"
@@ -238,9 +238,9 @@
         android:layout_marginTop="8dp"
         android:text="@string/collection"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@id/imageView6"
-        app:layout_constraintStart_toStartOf="@id/imageView6"
-        app:layout_constraintTop_toBottomOf="@id/imageView6" />
+        app:layout_constraintEnd_toEndOf="@id/iv_user_collect"
+        app:layout_constraintStart_toStartOf="@id/iv_user_collect"
+        app:layout_constraintTop_toBottomOf="@id/iv_user_collect" />
 
     <View
         android:id="@+id/view1"

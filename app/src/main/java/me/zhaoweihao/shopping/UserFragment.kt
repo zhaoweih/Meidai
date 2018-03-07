@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_user.*
-import kotlinx.android.synthetic.main.goods_item.*
 import me.zhaoweihao.shopping.constant.Constant.baseUrl
 import me.zhaoweihao.shopping.litepal.UserInfo
 import org.litepal.crud.DataSupport
@@ -30,16 +29,20 @@ class UserFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        Log.d(TAG,"onCreateView")
+        Log.d(TAG, "onCreateView")
         return inflater!!.inflate(R.layout.fragment_user, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            btn_login.setOnClickListener {
-                val intent = Intent(activity,LoginActivity::class.java)
-                startActivity(intent)
-            }
+        btn_login.setOnClickListener {
+            val intent = Intent(activity, LoginActivity::class.java)
+            startActivity(intent)
+        }
+        iv_user_collect.setOnClickListener {
+            val intent = Intent(activity, CollectionActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun hideOrShowComponents(code: Int) {
@@ -59,7 +62,7 @@ class UserFragment : Fragment() {
         textView13.visibility = code
         imageView5.visibility = code
         textView14.visibility = code
-        imageView6.visibility = code
+        iv_user_collect.visibility = code
         textView15.visibility = code
         view1.visibility = code
         imageView7.visibility = code
@@ -76,7 +79,7 @@ class UserFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        Log.d(TAG,"onResume")
+        Log.d(TAG, "onResume")
         val find = DataSupport.find(UserInfo::class.java, 1)
         if (find != null) {
 
@@ -86,7 +89,7 @@ class UserFragment : Fragment() {
             tv_phone.text = find.userPhone
             tv_usercoin.text = find.userCoin.toString()
             val imageUrl = find.userAvator
-            Picasso.with(activity).load(baseUrl+imageUrl)
+            Picasso.with(activity).load(baseUrl + imageUrl)
                     .resize(100, 100)
                     .centerCrop()
                     .into(iv_avatar)
@@ -99,7 +102,7 @@ class UserFragment : Fragment() {
             tv_not_login.visibility = View.INVISIBLE
             btn_login.visibility = View.INVISIBLE
         } else {
-            Log.d(TAG,"bad")
+            Log.d(TAG, "bad")
             hideOrShowComponents(View.INVISIBLE)
             tv_not_login.visibility = View.VISIBLE
             btn_login.visibility = View.VISIBLE
