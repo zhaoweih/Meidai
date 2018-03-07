@@ -27,7 +27,7 @@ class CollectionsAdapter(private val mCollectionsList: List<Collections.Data>) :
 
     private var mContext: Context? = null
 
-    private var gson: Gson? =null
+    private var gson: Gson? = null
 
 
     val TAG = "CollectionsAdapter"
@@ -57,12 +57,12 @@ class CollectionsAdapter(private val mCollectionsList: List<Collections.Data>) :
             val collection = mCollectionsList[position]
             Log.d(TAG, collection.name)
             val intent = Intent(mContext, GoodActivity::class.java)
-            intent.putExtra("id",collection.collectionsId)
-            intent.putExtra("tag",collection.tag)
-            intent.putExtra("description",collection.description)
+            intent.putExtra("id", collection.collectionsId)
+            intent.putExtra("tag", collection.tag)
+            intent.putExtra("description", collection.description)
             intent.putExtra("price", collection.price)
             intent.putExtra("name", collection.name)
-            intent.putExtra("sellerId",collection.sellerId)
+            intent.putExtra("sellerId", collection.sellerId)
             intent.putExtra("address", collection.address)
             intent.putExtra("pictures", collection.pictures)
             intent.putExtra("date", collection.date)
@@ -77,7 +77,6 @@ class CollectionsAdapter(private val mCollectionsList: List<Collections.Data>) :
             (mContext as CollectionActivity).startActivity(intent)
 
 
-
         }
         return holder
     }
@@ -86,7 +85,7 @@ class CollectionsAdapter(private val mCollectionsList: List<Collections.Data>) :
         val collection = mCollectionsList[position]
         val imageUrl = gson!!.fromJson(collection.pictures, Array<String>::class.java)[0]
         Log.d(TAG, Constant.baseUrl + imageUrl)
-        Picasso.with(mContext).load(Constant.baseUrl +imageUrl)
+        Picasso.with(mContext).load(Constant.baseUrl + imageUrl)
                 .resize(70, 70)
                 .centerCrop()
                 .into(holder.goodsImage)

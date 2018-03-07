@@ -65,4 +65,15 @@ object Utility {
         return null
     }
 
+    fun handleConcernsResponse(response: String): Concerns? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, Concerns::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
 }

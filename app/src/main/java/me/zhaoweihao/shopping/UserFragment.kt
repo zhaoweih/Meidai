@@ -43,6 +43,10 @@ class UserFragment : Fragment() {
             val intent = Intent(activity, CollectionActivity::class.java)
             startActivity(intent)
         }
+        iv_user_concern.setOnClickListener {
+            val intent = Intent(activity, ConcernActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun hideOrShowComponents(code: Int) {

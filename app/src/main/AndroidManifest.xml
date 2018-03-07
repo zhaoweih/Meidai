@@ -23,7 +23,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".GoodActivity" />
         <activity android:name=".BuyActivity" />
-        <activity android:name=".CollectionActivity"></activity>
+        <activity android:name=".CollectionActivity" />
+        <activity android:name=".ConcernActivity"></activity>
     </application>
 
 </manifest>
