@@ -21,6 +21,17 @@ object Utility {
         return null
     }
 
+    fun handleGoodResponse(response: String): Good? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, Good::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
     fun handleUserResponse(response: String): User? {
         try {
             val gson = Gson()
