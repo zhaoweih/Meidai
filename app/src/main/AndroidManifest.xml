@@ -24,7 +24,8 @@
         <activity android:name=".GoodActivity" />
         <activity android:name=".BuyActivity" />
         <activity android:name=".CollectionActivity" />
-        <activity android:name=".ConcernActivity"></activity>
+        <activity android:name=".ConcernActivity" />
+        <activity android:name=".PurchaserTradeActivity"></activity>
     </application>
 
 </manifest>

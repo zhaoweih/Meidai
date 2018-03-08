@@ -76,4 +76,21 @@ object Utility {
         return null
     }
 
+    fun handlePurchaserTradeResponse(response: String): PurchaserTrade? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, PurchaserTrade::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
+
+
+
+
+
+
 }
