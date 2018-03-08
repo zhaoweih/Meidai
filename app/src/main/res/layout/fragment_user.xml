@@ -204,7 +204,7 @@
         app:layout_constraintTop_toBottomOf="@id/imageView4" />
 
     <ImageView
-        android:id="@+id/iv_user_trade"
+        android:id="@+id/iv_user_trade_purchaser"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginEnd="32dp"
@@ -217,16 +217,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/order"
+        android:text="我的订单"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@id/iv_user_trade"
-        app:layout_constraintStart_toStartOf="@id/iv_user_trade"
-        app:layout_constraintTop_toBottomOf="@id/iv_user_trade" />
+        app:layout_constraintEnd_toEndOf="@id/iv_user_trade_purchaser"
+        app:layout_constraintStart_toStartOf="@id/iv_user_trade_purchaser"
+        app:layout_constraintTop_toBottomOf="@id/iv_user_trade_purchaser" />
     <ImageView
         android:id="@+id/iv_user_collect"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:layout_constraintEnd_toStartOf="@id/iv_user_trade"
+        app:layout_constraintEnd_toStartOf="@id/iv_user_trade_purchaser"
         app:layout_constraintStart_toEndOf="@id/imageView4"
         app:layout_constraintTop_toTopOf="@id/imageView4"
         app:srcCompat="@drawable/collection" />
@@ -366,6 +366,15 @@
         app:layout_constraintTop_toTopOf="@+id/imageView4"
         app:srcCompat="@mipmap/ic_launcher" />
 
+    <ImageView
+        android:id="@+id/iv_user_trade_seller"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toStartOf="@+id/iv_user_trade_purchaser"
+        app:layout_constraintStart_toEndOf="@+id/iv_user_collect"
+        app:layout_constraintTop_toTopOf="@+id/iv_user_collect"
+        app:srcCompat="@mipmap/ic_launcher" />
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -375,6 +384,18 @@
         app:layout_constraintEnd_toEndOf="@+id/iv_user_concern"
         app:layout_constraintStart_toStartOf="@+id/iv_user_concern"
         app:layout_constraintTop_toBottomOf="@+id/iv_user_concern" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="收到订单"
+        app:layout_constraintEnd_toEndOf="@+id/iv_user_trade_seller"
+        app:layout_constraintStart_toStartOf="@+id/iv_user_trade_seller"
+        app:layout_constraintTop_toBottomOf="@+id/iv_user_trade_seller" />
 
 </android.support.constraint.ConstraintLayout>
 

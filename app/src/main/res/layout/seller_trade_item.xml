@@ -56,19 +56,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/tv_goods_price"
-        app:layout_constraintTop_toTopOf="@+id/tv_goods_price" />
-
-    <TextView
-        android:id="@+id/tv_leave_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/tv_buy_num"
-        app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+        app:layout_constraintStart_toEndOf="@+id/tv_comment"
+        app:layout_constraintTop_toBottomOf="@+id/tv_buy_num" />
 
     <TextView
         android:id="@+id/tv_trade_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/iv_goods"
+        app:layout_constraintTop_toBottomOf="@+id/tv_comment" />
+
+    <TextView
+        android:id="@+id/tv_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -12,34 +12,34 @@ import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import me.zhaoweihao.shopping.GoodActivity
-import me.zhaoweihao.shopping.PurchaserTradeActivity
 import me.zhaoweihao.shopping.R
+import me.zhaoweihao.shopping.SellerTradeActivity
 import me.zhaoweihao.shopping.constant.Constant
-import me.zhaoweihao.shopping.gson.PurchaserTrade
+import me.zhaoweihao.shopping.gson.SellerTrade
 
 /**
  * Created by ZhaoWeihao on 2017/11/9.
  */
 
-class PurchaserTradeAdapter(private val mPurchaserTradeList: List<PurchaserTrade.Data>) : RecyclerView.Adapter<PurchaserTradeAdapter.ViewHolder>() {
+class SellerTradeAdapter(private val mSellerTradeList: List<SellerTrade.Data>) : RecyclerView.Adapter<SellerTradeAdapter.ViewHolder>() {
 
     private var mContext: Context? = null
 
     private var gson: Gson? = null
 
 
-    val TAG = "PurchaserTradeAdapter"
+    val TAG = "SellerTradeAdapter"
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var goodsImage = view.findViewById<ImageView>(R.id.iv_goods)
-        var sellerName = view.findViewById<TextView>(R.id.tv_purchaser)
+        var purchaserName = view.findViewById<TextView>(R.id.tv_purchaser)
         var goodsName = view.findViewById<TextView>(R.id.tv_goods_name)
         var goodsPrice = view.findViewById<TextView>(R.id.tv_goods_price)
         var buyNum = view.findViewById<TextView>(R.id.tv_buy_num)
-        var buyDate = view.findViewById<TextView>(R.id.tv_address)
-        var leaveMessage = view.findViewById<TextView>(R.id.tv_leave_message)
+        var address = view.findViewById<TextView>(R.id.tv_address)
         var tradeStatus = view.findViewById<TextView>(R.id.tv_trade_status)
-        var purchaserTradeView: View = view
+        var comment = view.findViewById<TextView>(R.id.tv_comment)
+        var sellerTradeView: View = view
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,22 +49,22 @@ class PurchaserTradeAdapter(private val mPurchaserTradeList: List<PurchaserTrade
         Log.d(TAG, "onCreateViewHolder")
         gson = Gson()
         val view = LayoutInflater.from(mContext)
-                .inflate(R.layout.purchaser_trade_item, parent, false)
+                .inflate(R.layout.seller_trade_item, parent, false)
         val holder = ViewHolder(view)
 
-        holder.purchaserTradeView.setOnClickListener {
+        holder.sellerTradeView.setOnClickListener {
             val position = holder.adapterPosition
-            val trade = mPurchaserTradeList[position]
+            val trade = mSellerTradeList[position]
             val intent = Intent(mContext, GoodActivity::class.java)
             intent.putExtra("id", trade.goodsId)
-            (mContext as PurchaserTradeActivity).startActivity(intent)
+            (mContext as SellerTradeActivity).startActivity(intent)
 
         }
         return holder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val trade = mPurchaserTradeList[position]
+        val trade = mSellerTradeList[position]
         val imageUrl = gson!!.fromJson(trade.goodsPicture, Array<String>::class.java)[0]
         Log.d(TAG, Constant.baseUrl + imageUrl)
         Picasso.with(mContext).load(Constant.baseUrl + imageUrl)
@@ -72,12 +72,17 @@ class PurchaserTradeAdapter(private val mPurchaserTradeList: List<PurchaserTrade
                 .centerCrop()
                 .into(holder.goodsImage)
 
-        holder.sellerName.text = "商家名称："+trade.userName
+        holder.purchaserName.text = "买家名称："+trade.userName
         holder.goodsName.text = "商品名字："+trade.goodsName
         holder.goodsPrice.text = "商品价格："+trade.goodsPrice.toString()
         holder.buyNum.text = "购买数量："+trade.buyNum.toString()
-        holder.buyDate.text = "购买日期："+trade.date
-        holder.leaveMessage.text = "留言："+trade.leaveMessage
+        holder.address.text = "寄送地址："+trade.userAddress+trade.userAddressMore
+        if (trade.commentsContent != null) {
+            holder.comment.text = "留言："+trade.commentsContent
+        } else {
+            holder.comment.text = "暂无评论"
+        }
+
 
         var tradeStatus: String ? = null
 
@@ -98,7 +103,7 @@ class PurchaserTradeAdapter(private val mPurchaserTradeList: List<PurchaserTrade
     }
 
     override fun getItemCount(): Int {
-        return mPurchaserTradeList.size
+        return mSellerTradeList.size
     }
 
 

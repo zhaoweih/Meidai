@@ -47,8 +47,12 @@ class UserFragment : Fragment() {
             val intent = Intent(activity, ConcernActivity::class.java)
             startActivity(intent)
         }
-        iv_user_trade.setOnClickListener {
+        iv_user_trade_purchaser.setOnClickListener {
             val intent = Intent(activity, PurchaserTradeActivity::class.java)
+            startActivity(intent)
+        }
+        iv_user_trade_seller.setOnClickListener {
+            val intent = Intent(activity, SellerTradeActivity::class.java)
             startActivity(intent)
         }
     }
@@ -68,7 +72,7 @@ class UserFragment : Fragment() {
         textView11.visibility = code
         imageView4.visibility = code
         textView13.visibility = code
-        iv_user_trade.visibility = code
+        iv_user_trade_purchaser.visibility = code
         textView14.visibility = code
         iv_user_collect.visibility = code
         textView15.visibility = code
