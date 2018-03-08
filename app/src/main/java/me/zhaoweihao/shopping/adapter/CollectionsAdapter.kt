@@ -57,7 +57,7 @@ class CollectionsAdapter(private val mCollectionsList: List<Collections.Data>) :
             val collection = mCollectionsList[position]
             Log.d(TAG, collection.name)
             val intent = Intent(mContext, GoodActivity::class.java)
-            intent.putExtra("id", collection.collectionsId)
+            intent.putExtra("id", collection.goodsId)
             intent.putExtra("tag", collection.tag)
             intent.putExtra("description", collection.description)
             intent.putExtra("price", collection.price)

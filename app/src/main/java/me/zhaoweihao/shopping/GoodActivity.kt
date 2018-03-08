@@ -3,16 +3,12 @@ package me.zhaoweihao.shopping
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.View
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_good.*
 import com.daimajia.slider.library.SliderTypes.TextSliderView
-import kotlinx.android.synthetic.main.activity_trade_purchaser.*
-import me.zhaoweihao.shopping.adapter.PurchaserTradeAdapter
 import me.zhaoweihao.shopping.constant.Constant
-import me.zhaoweihao.shopping.gson.Trade
 import me.zhaoweihao.shopping.litepal.UserInfo
 import me.zhaoweihao.shopping.utils.HttpUtil
 import me.zhaoweihao.shopping.utils.Utility
@@ -34,22 +30,6 @@ class GoodActivity : AppCompatActivity() {
         val intent = intent
 
         val goodId = intent.getIntExtra("id", 0)
-//        val goodTag = intent.getStringExtra("tag")
-//        val goodDescription = intent.getStringExtra("description")
-//        val goodPrice = intent.getIntExtra("price", 0)
-//        val goodName = intent.getStringExtra("name")
-//        val goodSellerId = intent.getIntExtra("sellerId", 0)
-//        val goodAddress = intent.getStringExtra("address")
-//        val goodPictures = intent.getStringExtra("pictures")
-//        val goodDate = intent.getStringExtra("date")
-//        val goodNum = intent.getIntExtra("num", 0)
-//        val goodSellCount = intent.getIntExtra("sellCount", 0)
-//        val goodStatus = intent.getIntExtra("status", 0)
-//        val goodKeyword = intent.getStringExtra("keyword")
-//        val goodLevel = intent.getStringExtra("level")
-//        val userName = intent.getStringExtra("userName")
-//        val userAvator = intent.getStringExtra("userAvator")
-
         val url = Constant.baseUrl + "get_goods_by_id?id=$goodId"
 
         HttpUtil.sendOkHttpGetRequest(url, object : Callback {
@@ -92,6 +72,8 @@ class GoodActivity : AppCompatActivity() {
                         tv_good_seller_name.text = userName
                         tv_good_description.text = goodDescription
 
+
+
                         val imageUrls = Gson().fromJson(goodPictures, Array<String>::class.java)
 
                         for (url in imageUrls) {
@@ -102,6 +84,8 @@ class GoodActivity : AppCompatActivity() {
                         }
 
                         iv_good.stopAutoCycle()
+
+
 
                         btn_buy.setOnClickListener {
                             val intent = Intent(this@GoodActivity, BuyActivity::class.java)

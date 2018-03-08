@@ -11,8 +11,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import me.zhaoweihao.shopping.CollectionActivity
 import me.zhaoweihao.shopping.GoodActivity
+import me.zhaoweihao.shopping.PurchaserTradeActivity
 import me.zhaoweihao.shopping.R
 import me.zhaoweihao.shopping.constant.Constant
 import me.zhaoweihao.shopping.gson.PurchaserTrade
@@ -53,26 +53,11 @@ class PurchaserTradeAdapter(private val mPurchaserTradeList: List<PurchaserTrade
         val holder = ViewHolder(view)
 
         holder.purchaserTradeView.setOnClickListener {
-//            val position = holder.adapterPosition
-//            val trade = mPurchaserTradeList[position]
-//            val intent = Intent(mContext, GoodActivity::class.java)
-//            intent.putExtra("id", trade.goodsId)
-//            intent.putExtra("description", trade.description)
-//            intent.putExtra("price", trade.price)
-//            intent.putExtra("name", trade.name)
-//            intent.putExtra("sellerId", trade.sellerId)
-//            intent.putExtra("address", trade.address)
-//            intent.putExtra("pictures", trade.pictures)
-//            intent.putExtra("date", trade.date)
-//            intent.putExtra("num", trade.num)
-//            intent.putExtra("sellCount", trade.sellCount)
-//            intent.putExtra("status", trade.status)
-//            intent.putExtra("keyword", trade.keyword)
-//            intent.putExtra("level", trade.level)
-//            intent.putExtra("userName", trade.userName)
-//            intent.putExtra("userAvator", trade.userAvator)
-//
-//            (mContext as CollectionActivity).startActivity(intent)
+            val position = holder.adapterPosition
+            val trade = mPurchaserTradeList[position]
+            val intent = Intent(mContext, GoodActivity::class.java)
+            intent.putExtra("id", trade.goodsId)
+            (mContext as PurchaserTradeActivity).startActivity(intent)
 
         }
         return holder
