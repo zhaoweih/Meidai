@@ -35,10 +35,10 @@ object HttpUtil {
     fun sendOkHttpPostFileRequest(address: String, file : File, callback: okhttp3.Callback) {
         val client = OkHttpClient()
         Log.d(TAG,address)
-        val MEDIA_TYPE_PNG = MediaType.parse("image/png")
+        val MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg")
 
         val req = MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("userfile", "profile.png", RequestBody.create(MEDIA_TYPE_PNG, file)).build()
+                .addFormDataPart("userfile", "profile.jpeg", RequestBody.create(MEDIA_TYPE_JPEG, file)).build()
 
         val request = Request.Builder()
                 .url(address)
