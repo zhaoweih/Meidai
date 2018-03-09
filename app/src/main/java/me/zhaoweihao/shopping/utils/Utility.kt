@@ -109,7 +109,7 @@ object Utility {
         return null
     }
 
-    fun handleUploadTradeResponse(response: String): Upload? {
+    fun handleUploadResponse(response: String): Upload? {
         try {
             val gson = Gson()
             return gson.fromJson(response, Upload::class.java)

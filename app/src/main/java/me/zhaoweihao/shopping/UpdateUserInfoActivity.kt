@@ -169,7 +169,7 @@ class UpdateUserInfoActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call?, response: Response?) {
                 val responseData = response!!.body()!!.string()
-                val upload = Utility.handleUploadTradeResponse(responseData)
+                val upload = Utility.handleUploadResponse(responseData)
                 returnUrl = upload!!.data
                 Log.d(TAG,"头像上传成功")
                 Log.d(TAG, responseData)
