@@ -37,4 +37,5 @@ dependencies {
     compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'org.litepal.android:core:1.6.1'
     compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.zhihu.android:matisse:0.4.3'
 }

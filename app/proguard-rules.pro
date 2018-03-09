@@ -24,3 +24,5 @@
 -keep class com.youth.banner.** {
     *;
  }
+
+-dontwarn com.bumptech.glide.**

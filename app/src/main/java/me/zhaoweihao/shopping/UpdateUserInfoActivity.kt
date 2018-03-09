@@ -1,16 +1,31 @@
 package me.zhaoweihao.shopping
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
+import com.zhihu.matisse.Matisse
+import com.zhihu.matisse.MimeType
+import com.zhihu.matisse.engine.impl.PicassoEngine
 import kotlinx.android.synthetic.main.activity_update_user_info.*
-import kotlinx.android.synthetic.main.fragment_user.*
 import me.zhaoweihao.shopping.constant.Constant
 import me.zhaoweihao.shopping.gson.Update
 import me.zhaoweihao.shopping.litepal.UserInfo
 import org.litepal.crud.DataSupport
+import java.io.*
+import android.provider.MediaStore
+import me.zhaoweihao.shopping.utils.HttpUtil
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Response
+
 
 class UpdateUserInfoActivity : AppCompatActivity() {
 
@@ -91,12 +106,91 @@ class UpdateUserInfoActivity : AppCompatActivity() {
                 Log.d(TAG,jsonObject)
 
                 //将数据通过POST方法上传到服务器
-                
+
             }
+
+            iv_avator.setOnClickListener {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+                } else {
+                    showImageSelector()
+                }
+            }
+
+
 
 
         } else {
             Log.d(TAG, "find is null")
+        }
+    }
+
+    private fun showImageSelector(){
+        Matisse.from(this)
+                .choose(setOf(MimeType.JPEG, MimeType.PNG))
+                .countable(true)
+                .maxSelectable(1)
+                .gridExpectedSize(resources.getDimensionPixelSize(R.dimen.grid_expected_size))
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                .thumbnailScale(0.85f)
+                .imageEngine(PicassoEngine())
+                .forResult(2)
+    }
+
+
+    private fun uploadImage(file: File) {
+
+        val url = "http://meidai.maocanhua.cn/upload/image"
+
+        Log.d(TAG,file.absolutePath)
+        HttpUtil.sendOkHttpPostFileRequest(url,file, object : Callback {
+            override fun onFailure(call: Call?, e: IOException?) {
+                Log.d(TAG,"failed")
+            }
+
+            override fun onResponse(call: Call?, response: Response?) {
+                val responseData = response!!.body()!!.string()
+                Log.d(TAG, responseData)
+            }
+
+        })
+
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            1 -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                showImageSelector()
+            } else {
+                Log.d(TAG, "Permission denied")
+            }
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            2 -> if (resultCode == RESULT_OK) {
+                val uri = Matisse.obtainResult(data)[0]
+
+                //uri to path
+                var path: String? = null
+                val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+                val cursor = contentResolver.query(uri, filePathColumn, null, null, null)
+                if (cursor!!.moveToFirst()) {
+                    val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                    path = cursor.getString(columnIndex)//输出的path
+                    Log.d(TAG,path)
+                } else {
+                    //boooo, cursor doesn't have rows ...
+                }
+                cursor.close()
+
+                uploadImage(File(path))
+
+
+
+            }
         }
     }
 }
