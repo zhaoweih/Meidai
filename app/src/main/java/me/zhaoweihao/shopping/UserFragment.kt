@@ -55,6 +55,10 @@ class UserFragment : Fragment() {
             val intent = Intent(activity, SellerTradeActivity::class.java)
             startActivity(intent)
         }
+        iv_avatar.setOnClickListener {
+            val intent = Intent(activity, UpdateUserInfoActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun hideOrShowComponents(code: Int) {
