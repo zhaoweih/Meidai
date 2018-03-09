@@ -30,7 +30,7 @@ class Update {
     @SerializedName("user_avator")
     var userAvator: String? = null
     @SerializedName("user_address")
-    var userAddress: String? = null
+    var userAddress: Array<String>? = null
     @SerializedName("user_address_more")
     var userAddressMore: String? = null
 }

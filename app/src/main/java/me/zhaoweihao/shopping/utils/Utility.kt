@@ -109,6 +109,17 @@ object Utility {
         return null
     }
 
+    fun handleUploadTradeResponse(response: String): Upload? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, Upload::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
 
 
 

@@ -21,7 +21,9 @@ import me.zhaoweihao.shopping.litepal.UserInfo
 import org.litepal.crud.DataSupport
 import java.io.*
 import android.provider.MediaStore
+import android.widget.Toast
 import me.zhaoweihao.shopping.utils.HttpUtil
+import me.zhaoweihao.shopping.utils.Utility
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
@@ -30,6 +32,8 @@ import okhttp3.Response
 class UpdateUserInfoActivity : AppCompatActivity() {
 
     val TAG = "UpdateUserInfoActivity"
+
+    var returnUrl: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,14 +102,29 @@ class UpdateUserInfoActivity : AppCompatActivity() {
                 }
 
                 update.userPhone = et_userphone.text.toString()
-                update.userAvator = find.userAvator
-                update.userAddress = et_useraddress.text.toString()
+                update.userAvator = returnUrl
+                val strs = Gson().fromJson(userAddress, Array<String>::class.java)
+                update.userAddress = strs
                 update.userAddressMore = et_useraddress_more.text.toString()
 
                 val jsonObject = Gson().toJson(update)
                 Log.d(TAG,jsonObject)
 
                 //将数据通过POST方法上传到服务器
+
+                val url = Constant.baseUrl+"update_user_info"
+
+                HttpUtil.sendOkHttpPostRequest(url,jsonObject,object : Callback{
+                    override fun onFailure(call: Call?, e: IOException?) {
+
+                    }
+
+                    override fun onResponse(call: Call?, response: Response?) {
+                        val responseData = response!!.body()!!.string()
+                        Log.d(TAG,responseData)
+                    }
+
+                })
 
             }
 
@@ -150,6 +169,9 @@ class UpdateUserInfoActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call?, response: Response?) {
                 val responseData = response!!.body()!!.string()
+                val upload = Utility.handleUploadTradeResponse(responseData)
+                returnUrl = upload!!.data
+                Log.d(TAG,"头像上传成功")
                 Log.d(TAG, responseData)
             }
 
