@@ -139,7 +139,7 @@
         android:layout_marginTop="8dp"
         android:text="商品描述"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_goods_image" />
+        app:layout_constraintTop_toBottomOf="@+id/ngv_image" />
 
     <EditText
         android:id="@+id/et_goods_description"
@@ -172,4 +172,14 @@
         android:text="发布"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_goods_address" />
+
+    <com.lzy.ninegrid.NineGridView
+        android:id="@+id/ngv_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ngv_mode="grid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_goods_image"
+        />
+
 </android.support.constraint.ConstraintLayout>

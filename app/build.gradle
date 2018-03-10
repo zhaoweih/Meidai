@@ -38,4 +38,5 @@ dependencies {
     compile 'org.litepal.android:core:1.6.1'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.zhihu.android:matisse:0.4.3'
+    compile 'com.lzy.widget:ninegridview:0.2.0'
 }

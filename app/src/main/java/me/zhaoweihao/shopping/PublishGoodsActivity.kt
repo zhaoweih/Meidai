@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -30,7 +31,8 @@ import org.litepal.util.Const
 import java.io.File
 import java.io.IOException
 import android.widget.ArrayAdapter
-
+import com.lzy.ninegrid.ImageInfo
+import com.lzy.ninegrid.preview.NineGridViewClickAdapter
 
 
 class PublishGoodsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -198,6 +200,26 @@ class PublishGoodsActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     }
 
+    private fun showImage(imageUris: List<Uri>) {
+
+        iv_goods_image.visibility = View.GONE
+
+        val imageInfo = ArrayList<ImageInfo>()
+
+        val length = imageUris.size
+
+        for (i in 0..(length - 1)) {
+            Log.d(TAG, imageUris[i].toString())
+            val info = ImageInfo()
+            info.setThumbnailUrl(imageUris[i].toString())
+            info.setBigImageUrl(imageUris[i].toString())
+            imageInfo.add(info)
+        }
+
+        ngv_image.setAdapter(NineGridViewClickAdapter(this, imageInfo))
+        ngv_image.setOnClickListener { showImageSelector() }
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             1 -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -214,6 +236,7 @@ class PublishGoodsActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
                 //uri to path
                 val uris = Matisse.obtainResult(data)
+                showImage(uris)
                 val uriLength = uris.size
                 val paths = arrayOfNulls<String>(uriLength)
                 imageUrls = arrayOfNulls<String>(paths.size)
