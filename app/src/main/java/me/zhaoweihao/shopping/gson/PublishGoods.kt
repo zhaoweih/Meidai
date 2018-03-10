@@ -29,6 +29,6 @@ class PublishGoods {
     @SerializedName("seller_id")
     var sellerId:Int = 0
     var address:String? = null
-    var pictures:Array<String> ? = null
+    var pictures:Array<String?> ? = null
     var num:Int= 0
 }
