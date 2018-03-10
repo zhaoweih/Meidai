@@ -120,6 +120,17 @@ object Utility {
         return null
     }
 
+    fun handleTagResponse(response: String): Tag? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, Tag::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
 
 
 

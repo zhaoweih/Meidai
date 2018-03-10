@@ -10,6 +10,8 @@ import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import com.google.gson.Gson
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
@@ -24,18 +26,58 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import org.litepal.crud.DataSupport
+import org.litepal.util.Const
 import java.io.File
 import java.io.IOException
+import android.widget.ArrayAdapter
 
-class PublishGoodsActivity : AppCompatActivity() {
+
+
+class PublishGoodsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     val TAG = "PublishGoodsActivity"
 
     var imageUrls: Array<String?> = arrayOfNulls(9)
 
+    var array: Array<String?> ?= null
+
+    var tagName: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_publish_goods)
+
+        val getTagUrl = Constant.baseUrl + "get_tags"
+
+        HttpUtil.sendOkHttpGetRequest(getTagUrl,object:Callback{
+            override fun onFailure(call: Call?, e: IOException?) {
+
+            }
+
+            override fun onResponse(call: Call?, response: Response?) {
+                val responseData = response!!.body()!!.string()
+                val tags = Utility.handleTagResponse(responseData)
+                if (tags!!.code == 200) {
+                    val tagsSize = tags.data!!.size
+                    array = arrayOfNulls<String>(tagsSize)
+                    for (i in 0..(tagsSize-1)){
+                        array!![i] = tags.data!![i].tagName
+                    }
+                    runOnUiThread {
+                        for (i in array!!) {
+                            Log.d(TAG,i)
+                        }
+
+                        val adapter = ArrayAdapter<String>(this@PublishGoodsActivity, android.R.layout.simple_spinner_item, array)
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        sp_tag.adapter = adapter
+                        sp_tag.onItemSelectedListener = this@PublishGoodsActivity
+                    }
+                }
+                Log.d(TAG,responseData)
+            }
+
+        })
 
         val find = DataSupport.find(UserInfo::class.java, 1)
 
@@ -65,7 +107,7 @@ class PublishGoodsActivity : AppCompatActivity() {
             btn_publish.setOnClickListener {
 
                 val token = find.userToken
-                val tag = "化妆品"
+                val tag = tagName
                 val description = et_goods_description.text.toString()
                 val keyword = et_goods_keyword.text.toString()
                 val price = et_goods_price.text.toString()
@@ -108,6 +150,15 @@ class PublishGoodsActivity : AppCompatActivity() {
         } else {
             Log.d(TAG,"find is null")
         }
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        Log.d(TAG,"selected:"+ array!![position])
+        tagName = array!![position]
     }
 
     private fun showImageSelector(){
@@ -182,7 +233,7 @@ class PublishGoodsActivity : AppCompatActivity() {
                     }
                     cursor.close()
                 }
-                
+
             }
         }
     }
