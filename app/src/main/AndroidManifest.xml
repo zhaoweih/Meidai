@@ -27,7 +27,8 @@
         <activity android:name=".ConcernActivity" />
         <activity android:name=".PurchaserTradeActivity" />
         <activity android:name=".SellerTradeActivity" />
-        <activity android:name=".UpdateUserInfoActivity"></activity>
+        <activity android:name=".UpdateUserInfoActivity" />
+        <activity android:name=".PublishGoodsActivity"></activity>
     </application>
 
 </manifest>

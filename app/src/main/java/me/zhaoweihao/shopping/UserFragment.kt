@@ -59,6 +59,10 @@ class UserFragment : Fragment() {
             val intent = Intent(activity, UpdateUserInfoActivity::class.java)
             startActivity(intent)
         }
+        iv_publish_goods.setOnClickListener {
+            val intent = Intent(activity, PublishGoodsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun hideOrShowComponents(code: Int) {
@@ -74,7 +78,7 @@ class UserFragment : Fragment() {
         textView7.visibility = code
         textView9.visibility = code
         textView11.visibility = code
-        imageView4.visibility = code
+        iv_publish_goods.visibility = code
         textView13.visibility = code
         iv_user_trade_purchaser.visibility = code
         textView14.visibility = code
