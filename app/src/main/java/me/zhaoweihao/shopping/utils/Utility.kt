@@ -131,6 +131,17 @@ object Utility {
         return null
     }
 
+    fun handleNotificationResponse(response: String): Notifications? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, Notifications::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
 
 
 
