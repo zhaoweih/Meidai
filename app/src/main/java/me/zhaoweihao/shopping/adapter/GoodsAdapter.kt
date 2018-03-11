@@ -14,6 +14,7 @@ import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import me.zhaoweihao.shopping.GoodActivity
 import me.zhaoweihao.shopping.MainActivity
+import me.zhaoweihao.shopping.MyGoodsActivity
 import me.zhaoweihao.shopping.R
 import me.zhaoweihao.shopping.constant.Constant.baseUrl
 import me.zhaoweihao.shopping.gson.Goods.Data
@@ -23,7 +24,7 @@ import me.zhaoweihao.shopping.gson.Goods.Data
  * Created by ZhaoWeihao on 2017/11/9.
  */
 
-class GoodsAdapter(private val mGoodsList: List<Data>) : RecyclerView.Adapter<GoodsAdapter.ViewHolder>() {
+class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : RecyclerView.Adapter<GoodsAdapter.ViewHolder>() {
 
     private var mContext: Context? = null
 
@@ -31,6 +32,10 @@ class GoodsAdapter(private val mGoodsList: List<Data>) : RecyclerView.Adapter<Go
 
 
     val TAG = "GoodsAdapter"
+
+    val MYGOODSACTIVITY_CODE = 2
+
+    val HOMEFRAGMENT_CODE = 1
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var goodsImage = view.findViewById<ImageView>(R.id.iv_goods)
@@ -71,7 +76,13 @@ class GoodsAdapter(private val mGoodsList: List<Data>) : RecyclerView.Adapter<Go
             intent.putExtra("userName", good.userName)
             intent.putExtra("userAvator", good.userAvator)
 
-            (mContext as MainActivity).startActivity(intent)
+            if (code == HOMEFRAGMENT_CODE) {
+                (mContext as MainActivity).startActivity(intent)
+            } else if (code == MYGOODSACTIVITY_CODE) {
+                (mContext as MyGoodsActivity).startActivity(intent)
+            }
+
+
 
 
 

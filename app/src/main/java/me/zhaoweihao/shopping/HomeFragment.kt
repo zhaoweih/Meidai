@@ -27,6 +27,8 @@ class HomeFragment : Fragment() {
 
     val TAG = "HomeFragment"
 
+    val HOMEFRAGMENT_CODE = 1
+
     companion object {
 
         fun newInstance(): HomeFragment {
@@ -66,7 +68,7 @@ class HomeFragment : Fragment() {
                     activity.runOnUiThread({
                         recyclerView!!.isNestedScrollingEnabled = false
                         recyclerView.layoutManager = GridLayoutManager(activity, 3)
-                        val adapter = GoodsAdapter(data!!)
+                        val adapter = GoodsAdapter(data!!,HOMEFRAGMENT_CODE)
                         recyclerView.adapter = adapter
                     })
                 } else {
