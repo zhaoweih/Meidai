@@ -33,7 +33,8 @@
         <activity android:name=".NotificationActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".UpdateGoodsActivity" />
-        <activity android:name=".CommentActivity"></activity>
+        <activity android:name=".CommentActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>

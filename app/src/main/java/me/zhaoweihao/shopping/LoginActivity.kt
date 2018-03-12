@@ -1,5 +1,6 @@
 package me.zhaoweihao.shopping
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,9 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import java.io.IOException
+import android.app.Activity
+
+
 
 
 
@@ -20,9 +24,23 @@ class LoginActivity : AppCompatActivity() {
 
     val TAG = "LoginActivity"
 
+
+
+    companion object {
+        var loginActivity: LoginActivity? = null
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        loginActivity = this
+
+        btn_register.setOnClickListener {
+            val intent = Intent(this,RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         login_btn.setOnClickListener {
             val username = et_username.text.toString()
@@ -76,22 +94,8 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
         }
-
-//        login_btn.setOnClickListener {
-//            val find = DataSupport.find(UserInfo::class.java, 1)
-//            if (find == null) {
-//                Log.d(TAG,"empty database")
-//                val userInfo = UserInfo()
-//                userInfo.userName = "zhaoweihao"
-//                userInfo.save()
-//            } else {
-//                Log.d(TAG,"good")
-//            }
-////            val find = DataSupport.findAll<UserInfo>(UserInfo::class.java)[0]
-////            Log.d(TAG,find.userName)
-//        }
-
-
     }
+
+
 
 }
