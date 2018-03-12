@@ -44,14 +44,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageButton" />
 
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editText"
+        <TextView
+            android:id="@+id/tv_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:enabled="false"
+            android:hint="鲁生花生油"
             android:inputType="textPersonName"
-            app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@id/textView2"
             app:layout_constraintEnd_toStartOf="@id/imageView"
             app:layout_constraintStart_toEndOf="@id/imageButton" />
@@ -64,7 +62,7 @@
             android:layout_marginTop="8dp"
             android:text="衣服"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editText" />
+            app:layout_constraintTop_toBottomOf="@id/tv_search" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_cloths"

@@ -12,10 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import me.zhaoweihao.shopping.GoodActivity
-import me.zhaoweihao.shopping.MainActivity
-import me.zhaoweihao.shopping.MyGoodsActivity
-import me.zhaoweihao.shopping.R
+import me.zhaoweihao.shopping.*
 import me.zhaoweihao.shopping.constant.Constant.baseUrl
 import me.zhaoweihao.shopping.gson.Goods.Data
 
@@ -36,6 +33,9 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
     val MYGOODSACTIVITY_CODE = 2
 
     val HOMEFRAGMENT_CODE = 1
+
+    val SEARCHACTIVITY_CODE = 3
+
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var goodsImage = view.findViewById<ImageView>(R.id.iv_goods)
@@ -80,6 +80,8 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
                 (mContext as MainActivity).startActivity(intent)
             } else if (code == MYGOODSACTIVITY_CODE) {
                 (mContext as MyGoodsActivity).startActivity(intent)
+            } else if (code == SEARCHACTIVITY_CODE) {
+                (mContext as SearchActivity).startActivity(intent)
             }
 
 

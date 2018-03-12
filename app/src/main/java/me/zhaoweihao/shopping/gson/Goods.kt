@@ -11,6 +11,7 @@ class Goods {
     var message: String? = null
     var data: List<Data>? = null
 
+
     class Data {
         @SerializedName("id")
         var goodsId: Int = 0

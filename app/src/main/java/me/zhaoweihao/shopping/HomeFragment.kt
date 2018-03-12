@@ -1,5 +1,6 @@
 package me.zhaoweihao.hnuplus
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -16,6 +17,7 @@ import java.io.IOException
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_home.*
+import me.zhaoweihao.shopping.SearchActivity
 import me.zhaoweihao.shopping.adapter.GoodsAdapter
 
 
@@ -47,6 +49,11 @@ class HomeFragment : Fragment() {
         requestGoodsByTag("衣服", rv_cloths)
         requestGoodsByTag("化妆品", rv_cosmetic)
         requestGoodsByTag("日用品", rv_daily)
+
+        tv_search.setOnClickListener {
+            val intent = Intent(activity, SearchActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
