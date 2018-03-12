@@ -23,8 +23,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-
-
         btn_register.setOnClickListener {
             /**
              *  注册
@@ -37,8 +35,6 @@ class RegisterActivity : AppCompatActivity() {
             val userPhone = et_userphone.text.toString()
             val password = et_password.text.toString()
             val passwordConfirm = et_password_confirm.text.toString()
-
-
 
             if (password == passwordConfirm) {
 
@@ -87,7 +83,7 @@ class RegisterActivity : AppCompatActivity() {
                             userInfoFromDatabase.userAddressMore = userInfoFromResponse.userAddressMore
                             userInfoFromDatabase.userToken = user.userData!!.userToken
                             userInfoFromDatabase.save()
-                            
+
                             LoginActivity.loginActivity!!.finish()
                             finish()
                         } else {

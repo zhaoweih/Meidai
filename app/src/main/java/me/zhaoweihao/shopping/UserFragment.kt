@@ -113,7 +113,15 @@ class UserFragment : Fragment() {
 
             tv_username.text = find.userName
             Log.d(TAG, find.userName)
-            tv_location.text = find.userAddressMore
+            val location = find.userAddressMore
+            if (location == "未填写") {
+                tv_location.text = "点此填写地址"
+                tv_location.setOnClickListener {
+                    //这里进行填写地址
+                }
+            } else {
+                tv_location.text = location
+            }
             tv_phone.text = find.userPhone
             tv_usercoin.text = find.userCoin.toString()
             val imageUrl = find.userAvator
@@ -124,7 +132,10 @@ class UserFragment : Fragment() {
             if (find.userAuthenticated == 1) {
                 tv_userauthenticated.text = "已实名"
             } else {
-                tv_userauthenticated.text = "未实名"
+                tv_userauthenticated.text = "点此实名"
+                tv_userauthenticated.setOnClickListener {
+                    //这里进行实名操作
+                }
             }
             hideOrShowComponents(View.VISIBLE)
             tv_not_login.visibility = View.INVISIBLE

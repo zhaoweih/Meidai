@@ -22,11 +22,14 @@ import org.litepal.crud.DataSupport
 import java.io.*
 import android.provider.MediaStore
 import android.widget.Toast
+import com.google.gson.JsonObject
 import me.zhaoweihao.shopping.utils.HttpUtil
 import me.zhaoweihao.shopping.utils.Utility
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
+import org.json.JSONObject
+import java.nio.charset.StandardCharsets
 
 
 class UpdateUserInfoActivity : AppCompatActivity() {
@@ -38,6 +41,20 @@ class UpdateUserInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_user_info)
+
+
+        btn_test.setOnClickListener {
+
+            val jsonData = loadJSONFromAsset()
+            val jsonObject = JSONObject(jsonData)
+            val keys = jsonObject.keys()
+            while (keys.hasNext())
+            {
+                val key = keys.next() as String
+                Log.d(TAG,key)
+            }
+
+        }
 
         val find = DataSupport.find(UserInfo::class.java, 1)
 
@@ -142,6 +159,22 @@ class UpdateUserInfoActivity : AppCompatActivity() {
         } else {
             Log.d(TAG, "find is null")
         }
+    }
+
+    private fun loadJSONFromAsset(): String? {
+        var json: String? = null
+        try {
+            val `is` = this.assets.open("citys.json")
+            val size = `is`.available()
+            val buffer = ByteArray(size)
+            `is`.read(buffer)
+            `is`.close()
+            json = String(buffer, StandardCharsets.UTF_8)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+        }
+
+        return json
     }
 
     private fun showImageSelector(){
