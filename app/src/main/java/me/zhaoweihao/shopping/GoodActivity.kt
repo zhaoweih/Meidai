@@ -72,8 +72,6 @@ class GoodActivity : AppCompatActivity() {
                         tv_good_seller_name.text = userName
                         tv_good_description.text = goodDescription
 
-
-
                         val imageUrls = Gson().fromJson(goodPictures, Array<String>::class.java)
 
                         for (url in imageUrls) {
@@ -84,8 +82,6 @@ class GoodActivity : AppCompatActivity() {
                         }
 
                         iv_good.stopAutoCycle()
-
-
 
                         btn_buy.setOnClickListener {
                             val intent = Intent(this@GoodActivity, BuyActivity::class.java)
@@ -106,6 +102,15 @@ class GoodActivity : AppCompatActivity() {
 
                         if (find != null) {
                             val userId = find.userId
+
+                            if (userId == goodSellerId) {
+                                btn_buy.visibility = View.GONE
+                                tv_isseller.visibility = View.VISIBLE
+                            } else {
+                                btn_buy.visibility = View.VISIBLE
+                                tv_isseller.visibility = View.GONE
+                            }
+
                             val isFollowUrl = Constant.baseUrl + "isfollow?follow=$userId&leader=$goodSellerId"
 
                             HttpUtil.sendOkHttpGetRequest(isFollowUrl, object : Callback {
