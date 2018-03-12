@@ -107,6 +107,7 @@ class SellerTradeAdapter(private val mSellerTradeList: List<SellerTrade.Data>) :
                         val responseData = response!!.body()!!.string()
                         val returnData = Utility.handleIsDeliverResponse(responseData)
                         if ( returnData!!.code == 200 ) {
+                            Log.d(TAG,"response")
                             (mContext as SellerTradeActivity).runOnUiThread {
                                 holder.deliver.visibility = View.GONE
                             }
