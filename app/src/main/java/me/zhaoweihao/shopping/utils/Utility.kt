@@ -164,6 +164,17 @@ object Utility {
         return null
     }
 
+    fun handleIsDeliverResponse(response: String): IsDeliver? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, IsDeliver::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
 
 
 

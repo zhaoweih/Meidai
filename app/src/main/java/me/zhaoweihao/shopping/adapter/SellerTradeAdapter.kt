@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
@@ -15,7 +16,16 @@ import me.zhaoweihao.shopping.GoodActivity
 import me.zhaoweihao.shopping.R
 import me.zhaoweihao.shopping.SellerTradeActivity
 import me.zhaoweihao.shopping.constant.Constant
+import me.zhaoweihao.shopping.gson.Deliver
 import me.zhaoweihao.shopping.gson.SellerTrade
+import me.zhaoweihao.shopping.litepal.UserInfo
+import me.zhaoweihao.shopping.utils.HttpUtil
+import me.zhaoweihao.shopping.utils.Utility
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Response
+import org.litepal.crud.DataSupport
+import java.io.IOException
 
 /**
  * Created by ZhaoWeihao on 2017/11/9.
@@ -39,6 +49,7 @@ class SellerTradeAdapter(private val mSellerTradeList: List<SellerTrade.Data>) :
         var address = view.findViewById<TextView>(R.id.tv_address)
         var tradeStatus = view.findViewById<TextView>(R.id.tv_trade_status)
         var comment = view.findViewById<TextView>(R.id.tv_comment)
+        var deliver = view.findViewById<Button>(R.id.btn_deliver)
         var sellerTradeView: View = view
     }
 
@@ -59,6 +70,56 @@ class SellerTradeAdapter(private val mSellerTradeList: List<SellerTrade.Data>) :
             intent.putExtra("id", trade.goodsId)
             (mContext as SellerTradeActivity).startActivity(intent)
 
+        }
+
+        holder.deliver.setOnClickListener {
+            val position = holder.adapterPosition
+            val trade = mSellerTradeList[position]
+
+            val find = DataSupport.find(UserInfo::class.java,1)
+
+            if ( find != null ) {
+
+                val deliver = Deliver()
+                /** 0=> 已下单 1=>已发货 2=>已签收
+                 * 将商品状态设置为发货 1
+                 * @param {*} token
+                 * @param {*} id
+                 * @param {*} status
+                 */
+
+                deliver.token = find.userToken
+                deliver.id = trade.sellerTradeId
+                deliver.status = 1
+
+                val jsonObject = Gson().toJson(deliver)
+
+                Log.d(TAG,jsonObject)
+
+                val url = Constant.baseUrl + "deliver"
+
+                HttpUtil.sendOkHttpPostRequest(url,jsonObject,object:Callback{
+                    override fun onFailure(call: Call?, e: IOException?) {
+
+                    }
+
+                    override fun onResponse(call: Call?, response: Response?) {
+                        val responseData = response!!.body()!!.string()
+                        val returnData = Utility.handleIsDeliverResponse(responseData)
+                        if ( returnData!!.code == 200 ) {
+                            (mContext as SellerTradeActivity).runOnUiThread {
+                                holder.deliver.visibility = View.GONE
+                            }
+                        }
+                        Log.d(TAG,responseData)
+                    }
+
+                })
+
+
+            } else {
+                Log.d(TAG,"find is null")
+            }
         }
         return holder
     }
@@ -89,12 +150,15 @@ class SellerTradeAdapter(private val mSellerTradeList: List<SellerTrade.Data>) :
         when (trade.status) {
             0 -> {
                 tradeStatus = "等待卖家发货"
+                holder.deliver.visibility = View.VISIBLE
             }
             1 -> {
                 tradeStatus = "等待买家收货"
+                holder.deliver.visibility = View.GONE
             }
             2 -> {
                 tradeStatus = "买家已签收"
+                holder.deliver.visibility = View.GONE
             }
         }
         holder.tradeStatus.text = "交易状态："+tradeStatus
