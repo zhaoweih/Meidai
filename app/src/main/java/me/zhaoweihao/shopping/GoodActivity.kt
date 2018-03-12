@@ -106,10 +106,43 @@ class GoodActivity : AppCompatActivity() {
                             if (userId == goodSellerId) {
                                 btn_buy.visibility = View.GONE
                                 tv_isseller.visibility = View.VISIBLE
+                                btn_update.visibility = View.VISIBLE
+
+                                btn_update.setOnClickListener {
+
+                                    /**
+                                     *更新商品信息，参数类型如上
+                                     * @param {*} token
+                                     * @param {*} tag
+                                     * @param {*} description
+                                     * @param {*} keyword
+                                     * @param {*} price
+                                     * @param {*} name
+                                     * @param {*} id 商品id
+                                     * @param {*} address
+                                     * @param {*} pictures
+                                     * @param {*} num
+                                     */
+
+                                    val intent = Intent(this@GoodActivity,UpdateGoodsActivity::class.java)
+                                    intent.putExtra("goodId",goodId)
+                                    intent.putExtra("tag",goodTag)
+                                    intent.putExtra("description",goodDescription)
+                                    intent.putExtra("keyword",goodKeyword)
+                                    intent.putExtra("price",goodPrice)
+                                    intent.putExtra("name",goodName)
+                                    intent.putExtra("address",goodAddress)
+                                    intent.putExtra("pictures",goodPictures)
+                                    intent.putExtra("num",goodNum)
+                                    startActivity(intent)
+
+                                }
                             } else {
                                 btn_buy.visibility = View.VISIBLE
                                 tv_isseller.visibility = View.GONE
+                                btn_update.visibility = View.GONE
                             }
+
 
                             val isFollowUrl = Constant.baseUrl + "isfollow?follow=$userId&leader=$goodSellerId"
 

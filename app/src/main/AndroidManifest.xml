@@ -31,7 +31,8 @@
         <activity android:name=".PublishGoodsActivity" />
         <activity android:name=".MyGoodsActivity" />
         <activity android:name=".NotificationActivity" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".UpdateGoodsActivity"></activity>
     </application>
 
 </manifest>

@@ -27,7 +27,6 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import org.litepal.crud.DataSupport
-import org.litepal.util.Const
 import java.io.File
 import java.io.IOException
 import android.widget.ArrayAdapter
@@ -106,7 +105,7 @@ class PublishGoodsActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 }
             }
 
-            btn_publish.setOnClickListener {
+            btn_update.setOnClickListener {
 
                 val token = find.userToken
                 val tag = tagName
