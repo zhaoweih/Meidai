@@ -76,4 +76,30 @@
         app:layout_constraintStart_toEndOf="@+id/iv_goods"
         app:layout_constraintTop_toBottomOf="@+id/tv_goods_name" />
 
+    <Button
+        android:id="@+id/btn_sure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="确认收货"
+        app:layout_constraintStart_toEndOf="@+id/iv_goods"
+        app:layout_constraintTop_toBottomOf="@+id/tv_trade_status" />
+
+    <Button
+        android:id="@+id/btn_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="评价"
+        app:layout_constraintStart_toEndOf="@+id/btn_sure"
+        app:layout_constraintTop_toTopOf="@+id/btn_sure" />
+
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/tv_trade_status"
+        app:layout_constraintTop_toBottomOf="@+id/tv_leave_message" />
+
 </android.support.constraint.ConstraintLayout>

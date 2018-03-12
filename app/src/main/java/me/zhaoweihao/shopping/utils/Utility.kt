@@ -142,6 +142,30 @@ object Utility {
         return null
     }
 
+    fun handleIsReceiveResponse(response: String): IsReceive? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, IsReceive::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
+    fun handleIsCommentResponse(response: String): IsComment? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, IsComment::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
+
+
 
 
 
