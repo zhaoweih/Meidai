@@ -79,7 +79,7 @@ class PurchaserTradeAdapter(private val mPurchaserTradeList: List<PurchaserTrade
             val postion = holder.adapterPosition
             val trade = mPurchaserTradeList[postion]
 
-            val find = DataSupport.find(UserInfo::class.java,1)
+            val find = DataSupport.findFirst(UserInfo::class.java)
 
             if ( find != null ) {
                 val receive = Receive()

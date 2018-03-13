@@ -44,7 +44,7 @@ class BuyActivity : AppCompatActivity() {
         tv_buy_total_price.text = totalPrice.toString()
         tv_buy_leave_message.text = leaveMessage
 
-        val find = DataSupport.find(UserInfo::class.java, 1)
+        val find = DataSupport.findFirst(UserInfo::class.java)
 
         if (find != null) {
             token = find.userToken

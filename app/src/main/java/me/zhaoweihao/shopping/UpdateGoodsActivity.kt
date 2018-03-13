@@ -120,7 +120,7 @@ class UpdateGoodsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
 
         })
-        val find = DataSupport.find(UserInfo::class.java,1)
+        val find = DataSupport.findFirst(UserInfo::class.java)
 
         if ( find != null ) {
             btn_update.setOnClickListener {

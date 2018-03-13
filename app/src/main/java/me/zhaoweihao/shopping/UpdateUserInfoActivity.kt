@@ -56,7 +56,7 @@ class UpdateUserInfoActivity : AppCompatActivity() {
 
         }
 
-        val find = DataSupport.find(UserInfo::class.java, 1)
+        val find = DataSupport.findFirst(UserInfo::class.java)
 
         if ( find != null ) {
             val userName = find.userName

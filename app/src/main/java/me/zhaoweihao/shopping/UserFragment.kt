@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.android.synthetic.main.fragment_user_not_login.*
 import me.zhaoweihao.shopping.constant.Constant.baseUrl
 import me.zhaoweihao.shopping.litepal.UserInfo
 import org.litepal.crud.DataSupport
@@ -71,6 +72,10 @@ class UserFragment : Fragment() {
             val intent = Intent(activity, NotificationActivity::class.java)
             startActivity(intent)
         }
+        tv_setting.setOnClickListener {
+            val intent = Intent(activity, SettingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun hideOrShowComponents(code: Int) {
@@ -103,12 +108,16 @@ class UserFragment : Fragment() {
         textView19.visibility = code
         imageView11.visibility = code
         textView20.visibility = code
+        iv_user_trade_seller.visibility = code
+        iv_user_concern.visibility = code
+        textView6.visibility = code
+        textView8.visibility = code
     }
 
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume")
-        val find = DataSupport.find(UserInfo::class.java, 1)
+        val find = DataSupport.findFirst(UserInfo::class.java)
         if (find != null) {
 
             tv_username.text = find.userName

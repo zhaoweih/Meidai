@@ -76,7 +76,7 @@ class SellerTradeAdapter(private val mSellerTradeList: List<SellerTrade.Data>) :
             val position = holder.adapterPosition
             val trade = mSellerTradeList[position]
 
-            val find = DataSupport.find(UserInfo::class.java,1)
+            val find = DataSupport.findFirst(UserInfo::class.java)
 
             if ( find != null ) {
 

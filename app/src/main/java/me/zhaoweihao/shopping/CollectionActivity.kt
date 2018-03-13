@@ -28,7 +28,7 @@ class CollectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collection)
 
-        val find = DataSupport.find(UserInfo::class.java, 1)
+        val find = DataSupport.findFirst(UserInfo::class.java)
 
         if ( find != null) {
             val userId = find.userId
