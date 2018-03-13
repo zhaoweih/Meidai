@@ -48,7 +48,7 @@ class SellerTradeAdapter(private val mSellerTradeList: List<SellerTrade.Data>) :
         var buyNum = view.findViewById<TextView>(R.id.tv_buy_num)
         var address = view.findViewById<TextView>(R.id.tv_address)
         var tradeStatus = view.findViewById<TextView>(R.id.tv_trade_status)
-        var comment = view.findViewById<TextView>(R.id.tv_comment)
+        var comment = view.findViewById<TextView>(R.id.tv_content)
         var deliver = view.findViewById<Button>(R.id.btn_deliver)
         var sellerTradeView: View = view
     }

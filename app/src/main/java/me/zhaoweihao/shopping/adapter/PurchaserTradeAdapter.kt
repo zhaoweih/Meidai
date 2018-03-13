@@ -17,7 +17,6 @@ import me.zhaoweihao.shopping.GoodActivity
 import me.zhaoweihao.shopping.PurchaserTradeActivity
 import me.zhaoweihao.shopping.R
 import me.zhaoweihao.shopping.constant.Constant
-import me.zhaoweihao.shopping.gson.Comment
 import me.zhaoweihao.shopping.gson.PurchaserTrade
 import me.zhaoweihao.shopping.gson.Receive
 import me.zhaoweihao.shopping.litepal.UserInfo
@@ -27,7 +26,6 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import org.litepal.crud.DataSupport
-import org.w3c.dom.Text
 import java.io.IOException
 
 /**
@@ -54,7 +52,7 @@ class PurchaserTradeAdapter(private val mPurchaserTradeList: List<PurchaserTrade
         var tradeStatus = view.findViewById<TextView>(R.id.tv_trade_status)
         var receive = view.findViewById<Button>(R.id.btn_sure)
         var comment = view.findViewById<Button>(R.id.btn_comment)
-        var commentContent = view.findViewById<TextView>(R.id.tv_comment)
+        var commentContent = view.findViewById<TextView>(R.id.tv_content)
         var purchaserTradeView: View = view
     }
 

@@ -3,11 +3,13 @@ package me.zhaoweihao.shopping
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.View
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_good.*
 import com.daimajia.slider.library.SliderTypes.TextSliderView
+import me.zhaoweihao.shopping.adapter.CommentsAdapter
 import me.zhaoweihao.shopping.constant.Constant
 import me.zhaoweihao.shopping.litepal.UserInfo
 import me.zhaoweihao.shopping.utils.HttpUtil
@@ -290,7 +292,32 @@ class GoodActivity : AppCompatActivity() {
 
                 }
 
-                Log.d(TAG, responseData)
+//                Log.d(TAG, responseData)
+            }
+
+        })
+
+        val commentUrl = Constant.baseUrl + "get_goods_comment?id=$goodId&begin=0&num=6"
+
+        HttpUtil.sendOkHttpGetRequest(commentUrl,object:Callback{
+            override fun onFailure(call: Call?, e: IOException?) {
+
+            }
+
+            override fun onResponse(call: Call?, response: Response?) {
+                val responseData = response!!.body()!!.string()
+                val comments = Utility.handleGetCommnentResponse(responseData)
+                if ( comments!!.code == 200 ) {
+                    val data = comments.data
+                    runOnUiThread {
+                        rv_comments.layoutManager = GridLayoutManager(this@GoodActivity,1)
+                        val adapter = CommentsAdapter(data!!)
+                        rv_comments.adapter = adapter
+                    }
+                } else {
+                    Log.d(TAG,"fail")
+                }
+                Log.d(TAG,responseData)
             }
 
         })

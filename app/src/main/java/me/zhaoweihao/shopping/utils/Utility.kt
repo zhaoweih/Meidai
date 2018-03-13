@@ -186,6 +186,17 @@ object Utility {
         return null
     }
 
+    fun handleGetCommnentResponse(response: String): GetComment? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, GetComment::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
 
 
 
