@@ -135,6 +135,8 @@ class UserFragment : Fragment() {
                 tv_userauthenticated.text = "点此实名"
                 tv_userauthenticated.setOnClickListener {
                     //这里进行实名操作
+                    val intent = Intent(activity,AuthenticateActivity::class.java)
+                    startActivity(intent)
                 }
             }
             hideOrShowComponents(View.VISIBLE)

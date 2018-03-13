@@ -175,6 +175,17 @@ object Utility {
         return null
     }
 
+    fun handleIsAuthenicateResponse(response: String): IsAuthenticate? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, IsAuthenticate::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
 
 
 

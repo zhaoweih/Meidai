@@ -14,7 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".GoodActivity" />
@@ -23,20 +27,15 @@
         <activity android:name=".ConcernActivity" />
         <activity android:name=".PurchaserTradeActivity" />
         <activity android:name=".SellerTradeActivity" />
-        <activity android:name=".UpdateUserInfoActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".UpdateUserInfoActivity"></activity>
         <activity android:name=".PublishGoodsActivity" />
         <activity android:name=".MyGoodsActivity" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".UpdateGoodsActivity" />
         <activity android:name=".CommentActivity" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".AuthenticateActivity"></activity>
     </application>
 
 </manifest>
