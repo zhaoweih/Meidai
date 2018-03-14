@@ -52,7 +52,7 @@ class NotificationsAdapter(private val mNotificationsList: List<Notifications.Da
         holder.notificationsView.setOnClickListener {
 //            val position = holder.adapterPosition
 //            val collection = mCollectionsList[position]
-//            Log.d(TAG, collection.name)
+//            Message.d(TAG, collection.name)
 //            val intent = Intent(mContext, GoodActivity::class.java)
 //            intent.putExtra("id", collection.goodsId)
 //            intent.putExtra("tag", collection.tag)

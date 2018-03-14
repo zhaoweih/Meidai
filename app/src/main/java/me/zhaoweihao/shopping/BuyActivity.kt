@@ -98,7 +98,7 @@ class BuyActivity : AppCompatActivity() {
 //                        if (user!!.code == 200) {
 //
 //                        } else {
-//                            Log.d(TAG, "failed")
+//                            Message.d(TAG, "failed")
 //                        }
                     }
                 })

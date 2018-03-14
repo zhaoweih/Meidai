@@ -292,7 +292,7 @@ class GoodActivity : AppCompatActivity() {
 
                 }
 
-//                Log.d(TAG, responseData)
+//                Message.d(TAG, responseData)
             }
 
         })

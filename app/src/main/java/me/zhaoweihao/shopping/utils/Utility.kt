@@ -197,6 +197,17 @@ object Utility {
         return null
     }
 
+    fun handleGetLogResponse(response: String): GetLog? {
+        try {
+            val gson = Gson()
+            return gson.fromJson(response, GetLog::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
 
 
 
