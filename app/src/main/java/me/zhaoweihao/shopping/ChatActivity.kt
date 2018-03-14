@@ -27,6 +27,9 @@ import io.socket.client.Socket
 import io.socket.emitter.Emitter
 import org.json.JSONException
 import org.json.JSONObject
+import com.google.gson.JsonObject
+
+
 
 
 class ChatActivity : AppCompatActivity() {
@@ -100,17 +103,26 @@ class ChatActivity : AppCompatActivity() {
                             send.token = find.userToken
                             send.action = "chat"
 
+
+
                             val jsonObject = Gson().toJson(send)
-                            Log.e(TAG, jsonObject)
+//                            Log.d(TAG, jsonObject)
+
+                            val json = JSONObject()
+                            json.put("from", "/user/"+data.logFrom)
+                            json.put("to", "/user/"+data.logTo)
+                            json.put("data",JSONObject(Gson().toJson(data)))
+                            json.put("token",find.userToken)
+                            json.put("action","chat")
 
                             //perform the sending message attempt.
-                            mSocket!!.emit("client", jsonObject)
+                            mSocket!!.emit("client", json)
 
 
                         } else {
                             Log.d(TAG, "code is not 200")
                         }
-                        Log.d(TAG, responseData)
+//                        Log.d(TAG, responseData)
                     }
 
                 })
