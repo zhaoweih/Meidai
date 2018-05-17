@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.google.gson.Gson
 import me.zhaoweihao.shopping.R
-import me.zhaoweihao.shopping.gson.GetComment
+import me.zhaoweihao.shopping.data.GetComment
 
 /**
  * Created by ZhaoWeihao on 2017/11/9.

@@ -32,7 +32,7 @@
     	</list>
     -->
     <list>
-        <mapping class="me.zhaoweihao.shopping.litepal.UserInfo" />
+        <mapping class="me.zhaoweihao.shopping.database.UserInfo" />
     </list>
 
     <!--

@@ -20,4 +20,27 @@
     <string name="need_to_purchase">需代人</string>
     <string name="purchase_people">代购人</string>
     <string name="to_be_commented">待评论</string>
+
+    <string name="zhihu_daily">Zhihu Daily</string>
+    <string name="guokr_handpick">Guokr Handpick</string>
+    <string name="douban_moment">Douban Moment</string>
+
+    <string name="favorites">Favorites</string>
+    <string name="info">Info</string>
+    <string name="timeline">Timeline</string>
+
+    <!-- general -->
+    <string name="positive">OK</string>
+    <string name="negative">Cancel</string>
+    <string name="something_wrong">Something wrong…</string>
+    <!-- general end -->
+
+    <!-- timeline -->
+    <string name="fab_description">Select a specific date</string>
+    <string name="empty_content">Oops, nothing here…</string>
+    <!-- timeline end -->
+
+    <!-- favorites -->
+    <string name="no_favorites">NO FAVORITES</string>
+    <!-- favorites end -->
 </resources>

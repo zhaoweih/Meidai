@@ -12,14 +12,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import me.zhaoweihao.shopping.CommentActivity
-import me.zhaoweihao.shopping.GoodActivity
-import me.zhaoweihao.shopping.PurchaserTradeActivity
+import me.zhaoweihao.shopping.trade.CommentActivity
+import me.zhaoweihao.shopping.goods.GoodActivity
+import me.zhaoweihao.shopping.trade.PurchaserTradeActivity
 import me.zhaoweihao.shopping.R
 import me.zhaoweihao.shopping.constant.Constant
-import me.zhaoweihao.shopping.gson.PurchaserTrade
-import me.zhaoweihao.shopping.gson.Receive
-import me.zhaoweihao.shopping.litepal.UserInfo
+import me.zhaoweihao.shopping.data.PurchaserTrade
+import me.zhaoweihao.shopping.data.Receive
+import me.zhaoweihao.shopping.database.UserInfo
 import me.zhaoweihao.shopping.utils.HttpUtil
 import me.zhaoweihao.shopping.utils.Utility
 import okhttp3.Call
@@ -151,7 +151,7 @@ class PurchaserTradeAdapter(private val mPurchaserTradeList: List<PurchaserTrade
                  * @param {*} isSecret 是否匿名，默认匿名
                  */
 
-                val intent = Intent(mContext,CommentActivity::class.java)
+                val intent = Intent(mContext, CommentActivity::class.java)
             intent.putExtra("tradeId",trade.purchaserTradeId)
             intent.putExtra("goodId",trade.goodsId)
             (mContext as PurchaserTradeActivity) .startActivity(intent)

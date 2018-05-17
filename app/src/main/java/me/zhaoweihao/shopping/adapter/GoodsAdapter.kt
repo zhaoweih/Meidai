@@ -14,7 +14,11 @@ import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import me.zhaoweihao.shopping.*
 import me.zhaoweihao.shopping.constant.Constant.baseUrl
-import me.zhaoweihao.shopping.gson.Goods.Data
+import me.zhaoweihao.shopping.goods.MyGoodsActivity
+import me.zhaoweihao.shopping.data.Goods.Data
+import me.zhaoweihao.shopping.goods.GoodActivity
+import me.zhaoweihao.shopping.ui.MainActivity
+import me.zhaoweihao.shopping.ui.SearchActivity
 
 
 /**

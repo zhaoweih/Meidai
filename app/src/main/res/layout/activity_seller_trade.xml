@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="me.zhaoweihao.shopping.SellerTradeActivity">
+    tools:context="me.zhaoweihao.shopping.trade.SellerTradeActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_seller_trade"

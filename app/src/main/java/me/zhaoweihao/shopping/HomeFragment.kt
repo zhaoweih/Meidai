@@ -17,7 +17,7 @@ import java.io.IOException
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_home.*
-import me.zhaoweihao.shopping.SearchActivity
+import me.zhaoweihao.shopping.ui.SearchActivity
 import me.zhaoweihao.shopping.adapter.GoodsAdapter
 
 

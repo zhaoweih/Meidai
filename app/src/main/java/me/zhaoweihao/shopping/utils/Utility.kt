@@ -2,7 +2,7 @@ package me.zhaoweihao.shopping.utils
 
 
 import com.google.gson.Gson
-import me.zhaoweihao.shopping.gson.*
+import me.zhaoweihao.shopping.data.*
 
 
 /**

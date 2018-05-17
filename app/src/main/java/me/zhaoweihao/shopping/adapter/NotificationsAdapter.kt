@@ -1,7 +1,6 @@
 package me.zhaoweihao.shopping.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,12 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import me.zhaoweihao.shopping.CollectionActivity
-import me.zhaoweihao.shopping.GoodActivity
 import me.zhaoweihao.shopping.R
 import me.zhaoweihao.shopping.constant.Constant
-import me.zhaoweihao.shopping.gson.Collections
-import me.zhaoweihao.shopping.gson.Notifications
+import me.zhaoweihao.shopping.data.Notifications
 
 /**
  * Created by ZhaoWeihao on 2017/11/9.

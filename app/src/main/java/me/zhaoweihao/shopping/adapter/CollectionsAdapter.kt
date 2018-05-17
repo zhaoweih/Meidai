@@ -11,13 +11,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import me.zhaoweihao.shopping.CollectionActivity
-import me.zhaoweihao.shopping.GoodActivity
-import me.zhaoweihao.shopping.MainActivity
+import me.zhaoweihao.shopping.goods.CollectionActivity
+import me.zhaoweihao.shopping.goods.GoodActivity
 import me.zhaoweihao.shopping.R
 import me.zhaoweihao.shopping.constant.Constant
-import me.zhaoweihao.shopping.gson.Collections
-import me.zhaoweihao.shopping.gson.Goods
+import me.zhaoweihao.shopping.data.Collections
 
 /**
  * Created by ZhaoWeihao on 2017/11/9.

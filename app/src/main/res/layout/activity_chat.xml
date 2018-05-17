@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.zhaoweihao.shopping.ChatActivity">
+    tools:context="me.zhaoweihao.shopping.message.ChatActivity">
 
     <EditText
         android:id="@+id/et_message"
@@ -28,11 +28,4 @@
         app:layout_constraintStart_toEndOf="@+id/et_message"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试"
-        app:layout_constraintTop_toBottomOf="@+id/btn_send"
-        tools:layout_editor_absoluteX="229dp" />
 </android.support.constraint.ConstraintLayout>

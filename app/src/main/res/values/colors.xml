@@ -8,4 +8,11 @@
     <color name="tabselect">#FFFFFF</color>
     <color name="tabunselect">#E0E0E0</color>
     <color name="purchasingcolor">#C8C8C8</color>
+
+    <color name="colorPrimaryText">#212121</color>
+
+    <color name="colorNavItemUnselected">#757575</color>
+    <color name="colorNavItemSelected">@color/colorAccent</color>
+
+    <color name="colorBaseBackground">#fafafa</color>
 </resources>

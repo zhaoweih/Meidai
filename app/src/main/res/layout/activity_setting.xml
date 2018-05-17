@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.zhaoweihao.shopping.SettingActivity">
+    tools:context="me.zhaoweihao.shopping.ui.SettingActivity">
 
     <Button
         android:id="@+id/btn_log_out"

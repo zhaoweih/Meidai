@@ -9,9 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_user.*
-import kotlinx.android.synthetic.main.fragment_user_not_login.*
 import me.zhaoweihao.shopping.constant.Constant.baseUrl
-import me.zhaoweihao.shopping.litepal.UserInfo
+import me.zhaoweihao.shopping.goods.CollectionActivity
+import me.zhaoweihao.shopping.goods.MyGoodsActivity
+import me.zhaoweihao.shopping.goods.PublishGoodsActivity
+import me.zhaoweihao.shopping.database.UserInfo
+import me.zhaoweihao.shopping.message.NotificationActivity
+import me.zhaoweihao.shopping.trade.PurchaserTradeActivity
+import me.zhaoweihao.shopping.trade.SellerTradeActivity
+import me.zhaoweihao.shopping.ui.LoginActivity
+import me.zhaoweihao.shopping.ui.SettingActivity
+import me.zhaoweihao.shopping.user.AuthenticateActivity
+import me.zhaoweihao.shopping.user.ConcernActivity
+import me.zhaoweihao.shopping.user.UpdateUserInfoActivity
 import org.litepal.crud.DataSupport
 
 /**
@@ -144,7 +154,7 @@ class UserFragment : Fragment() {
                 tv_userauthenticated.text = "点此实名"
                 tv_userauthenticated.setOnClickListener {
                     //这里进行实名操作
-                    val intent = Intent(activity,AuthenticateActivity::class.java)
+                    val intent = Intent(activity, AuthenticateActivity::class.java)
                     startActivity(intent)
                 }
             }
