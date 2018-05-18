@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import me.zhaoweihao.shopping.constant.Constant;
@@ -14,6 +15,11 @@ import me.zhaoweihao.shopping.data.Good;
 import me.zhaoweihao.shopping.data.Goods;
 import me.zhaoweihao.shopping.data.OnStringListener;
 import me.zhaoweihao.shopping.data.StringModelImpl;
+import me.zhaoweihao.shopping.utils.HttpUtil;
+import me.zhaoweihao.shopping.utils.NewHttpUtil;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class FavoritesPresenter implements FavoritesContract.Presenter,OnStringListener{
 
@@ -22,13 +28,17 @@ public class FavoritesPresenter implements FavoritesContract.Presenter,OnStringL
     private FavoritesContract.View view;
     private Context context;
     private StringModelImpl model;
-    private ArrayList<Goods.Data> goodsList = new ArrayList<>();
+    private ArrayList<Goods.Data>[] goodsLists = new ArrayList[2];
 
     public FavoritesPresenter(Context context, FavoritesContract.View view) {
         this.view = view;
         this.context = context;
         this.view.setPresenter(this);
         model = new StringModelImpl(context);
+        for (int i = 0; i < goodsLists.length; i++) {
+            Log.d(TAG, "运行");
+            goodsLists[i] = new ArrayList<>();
+        }
     }
     @Override
     public void start() {
@@ -37,13 +47,9 @@ public class FavoritesPresenter implements FavoritesContract.Presenter,OnStringL
 
     @Override
     public void onSuccess(@NotNull String result) {
-        Log.d(TAG, result);
-        Goods goods = new Gson().fromJson(result, Goods.class);
-        if (goods.getCode() == 200) {
-            goodsList.addAll(goods.getData());
-            view.showResult(goodsList);
-            view.stopLoading();
-        }
+        Log.d(TAG, "点3");
+        Log.d(TAG, "onSuccess " + result);
+
 
     }
 
@@ -53,19 +59,62 @@ public class FavoritesPresenter implements FavoritesContract.Presenter,OnStringL
         view.stopLoading();
     }
 
+    /**
+     * 此方法需要简化
+     * @param forceRefresh
+     * @param tagNames
+     */
     @Override
-    public void requestGoodsList(Boolean forceRefresh, String tagName) {
-        String url = "http://meidai.maocanhua.cn/get_goods_by_tag?tagName="+tagName+"&begin=0&num=6";
+    public void requestGoodsList(Boolean forceRefresh, String[] tagNames) {
+        String[] urls = new String[tagNames.length];
+        for (int i = 0; i < urls.length; i++) {
+            urls[i] = "http://meidai.maocanhua.cn/get_goods_by_tag?tagName="+tagNames[i]+"&begin=0&num=6";
+        }
+
         view.startLoading();
         if (forceRefresh) {
-            goodsList.clear();
+            goodsLists[0].clear();
         }
-        Log.d(TAG, goodsList.toString());
-        model.load(url, this);
+        NewHttpUtil.sendGetRequest(urls[0], new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String body = response.body().string();
+                Goods goods = new Gson().fromJson(body, Goods.class);
+                if (goods.getCode() == 200) {
+                    goodsLists[0].clear();
+                    goodsLists[0].addAll(goods.getData());
+                    NewHttpUtil.sendGetRequest(urls[1], new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            String body = response.body().string();
+                            Goods goods = new Gson().fromJson(body, Goods.class);
+                            if (goods.getCode() == 200) {
+                                goodsLists[1].clear();
+                                goodsLists[1].addAll(goods.getData());
+
+                                view.showResult(goodsLists);
+                                view.stopLoading();
+                            }
+                        }
+                    });
+
+                }
+            }
+        });
     }
 
     @Override
     public ArrayList<Goods.Data> getGoodsList() {
-        return goodsList;
+        return null;
     }
 }

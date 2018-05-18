@@ -10,6 +10,7 @@ import java.io.File
 
 object HttpUtil {
 
+
     val TAG = "HttpUtil"
 
     private val JSON = MediaType.parse("application/json; charset=utf-8")

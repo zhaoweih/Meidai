@@ -35,10 +35,8 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
     private LinearLayout linearLayout;
     private String[] tagNames;
     private RecyclerView[] recyclerViews;
-    private int count;
 
     public FavoritesFragment() {
-        count = 0;
     }
 
     public static FavoritesFragment newInstance() { return new FavoritesFragment(); }
@@ -55,24 +53,24 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
         recyclerViews = new RecyclerView[tagNames.length];
         adapters = new GoodsAdapter[tagNames.length];
 
-        Log.d(TAG, "adapter大小" + adapters.length);
-
         for (int i = 0; i < tagNames.length; i++) {
-            Log.d(TAG, "测试点");
             recyclerViews[i] = new RecyclerView(getActivity());
             TextView textView = new TextView(getActivity());
             textView.setText("分割线");
+            TextView textView1 = new TextView(getActivity());
+            textView1.setText("分割线end");
             linearLayout.addView(textView);
             linearLayout.addView(recyclerViews[i]);
-            mPresenter.requestGoodsList(true, tagNames[i]);
+            linearLayout.addView(textView1);
         }
 
-//        mRefreshLayout.setOnRefreshListener(() -> {
-//
-//            mPresenter.requestGoodsList(true, "衣服");
-////            adapter.notifyDataSetChanged();
-//            stopLoading();
-//        });
+        mPresenter.requestGoodsList(true, tagNames);
+
+        mRefreshLayout.setOnRefreshListener(() -> {
+
+            mPresenter.requestGoodsList(true, tagNames);
+            stopLoading();
+        });
 
         return view;
 
@@ -90,8 +88,6 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
         mEmptyView = view.findViewById(R.id.empty_view);
         mRefreshLayout = view.findViewById(R.id.refresh_layout);
         linearLayout = view.findViewById(R.id.ll);
-//        recyclerView = view.findViewById(R.id.rv_cloths);
-//        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
 
     }
 
@@ -99,9 +95,6 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
     public void onResume() {
         super.onResume();
         mPresenter.start();
-//        for (int i = 0; i < tagNames.length; i++) {
-//            mPresenter.requestGoodsList(true, tagNames[i]);
-//        }
 
     }
 
@@ -111,24 +104,22 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
     }
 
     @Override
-    public void showResult(ArrayList<Goods.Data> goodsList) {
-        Log.d(TAG, "执行");
-        Log.d(TAG, goodsList.toString());
+    public void showResult(ArrayList<Goods.Data>[] goodsLists) {
         getActivity().runOnUiThread(() -> {
-            if (adapters[count] == null) {
-                adapters[count] = new GoodsAdapter(goodsList, 1);
+            for (int i = 0; i < tagNames.length; i++) {
+                if (adapters[i] == null) {
+                    adapters[i] = new GoodsAdapter(goodsLists[i], 1);
 //                recyclerView.setAdapter(adapter);
-                recyclerViews[count].setLayoutManager(new GridLayoutManager(getActivity(), 3));
-                recyclerViews[count].setAdapter(adapters[count]);
+                    recyclerViews[i].setLayoutManager(new GridLayoutManager(getActivity(), 3));
+                    recyclerViews[i].setAdapter(adapters[i]);
+
+                }
+                else {
+                    adapters[i].notifyDataSetChanged();
+                }
 
             }
-            else {
-                adapters[count].notifyDataSetChanged();
-            }
 
-            if (count < tagNames.length) {
-                count ++;
-            }
         });
     }
 

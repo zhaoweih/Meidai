@@ -7,12 +7,12 @@ import me.zhaoweihao.shopping.BasePresenter;
 import me.zhaoweihao.shopping.BaseView;
 import me.zhaoweihao.shopping.data.Goods;
 
-public class FavoritesContract {
+public interface FavoritesContract {
 
     interface View extends BaseView<FavoritesContract.Presenter> {
         boolean isActive();
 
-        void showResult(ArrayList<Goods.Data> goodsList);
+        void showResult(ArrayList<Goods.Data>[] goodsLists);
 
         void startLoading();
 
@@ -23,7 +23,7 @@ public class FavoritesContract {
     }
 
     interface Presenter extends BasePresenter {
-        void requestGoodsList(Boolean forceRefresh, String tagName);
+        void requestGoodsList(Boolean forceRefresh, String[] tagNames);
 
         ArrayList<Goods.Data> getGoodsList();
 
