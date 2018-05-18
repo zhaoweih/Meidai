@@ -25,9 +25,9 @@
     <string name="guokr_handpick">Guokr Handpick</string>
     <string name="douban_moment">Douban Moment</string>
 
-    <string name="favorites">Favorites</string>
-    <string name="info">Info</string>
-    <string name="timeline">Timeline</string>
+    <string name="favorites">首页</string>
+    <string name="info">信息</string>
+    <string name="timeline">消息</string>
 
     <!-- general -->
     <string name="positive">OK</string>
@@ -37,7 +37,7 @@
 
     <!-- timeline -->
     <string name="fab_description">Select a specific date</string>
-    <string name="empty_content">Oops, nothing here…</string>
+    <string name="empty_content">唔，暂时还没有东西</string>
     <!-- timeline end -->
 
     <!-- favorites -->

@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 class Goods {
     var code: Int = 0
     var message: String? = null
-    var data: List<Data>? = null
+    var data: ArrayList<Data>? = null
 
 
     class Data {

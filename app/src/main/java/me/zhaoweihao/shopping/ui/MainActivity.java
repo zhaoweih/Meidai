@@ -27,6 +27,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import me.zhaoweihao.shopping.R;
 import me.zhaoweihao.shopping.favorites.FavoritesFragment;
+import me.zhaoweihao.shopping.favorites.FavoritesPresenter;
 import me.zhaoweihao.shopping.timeline.TimelineFragment;
 
 
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         initFragments(savedInstanceState);
 
+        new FavoritesPresenter(this, mFavoritesFragment);
+
 //        new FavoritesPresenter(
 //                mFavoritesFragment,
 //                ZhihuDailyNewsRepository.getInstance(ZhihuDailyNewsRemoteDataSource.getInstance(), ZhihuDailyNewsLocalDataSource.getInstance(MainActivity.this)),
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 showFragment(mFavoritesFragment);
                 mBottomNavigationView.setSelectedItemId(R.id.nav_favorites);
             } else {
-                showFragment(mTimelineFragment);
+                showFragment(mFavoritesFragment);
             }
         }
 

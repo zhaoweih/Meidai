@@ -50,10 +50,10 @@ class HomeFragment : Fragment() {
         requestGoodsByTag("化妆品", rv_cosmetic)
         requestGoodsByTag("日用品", rv_daily)
 
-        tv_search.setOnClickListener {
-            val intent = Intent(activity, SearchActivity::class.java)
-            startActivity(intent)
-        }
+//        tv_search.setOnClickListener {
+//            val intent = Intent(activity, SearchActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 
