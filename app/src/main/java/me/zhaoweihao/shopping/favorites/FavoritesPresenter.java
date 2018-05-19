@@ -28,7 +28,7 @@ public class FavoritesPresenter implements FavoritesContract.Presenter,OnStringL
     private FavoritesContract.View view;
     private Context context;
     private StringModelImpl model;
-    private ArrayList<Goods.Data>[] goodsLists = new ArrayList[2];
+    private ArrayList<Goods.Data>[] goodsLists = new ArrayList[5];
 
     public FavoritesPresenter(Context context, FavoritesContract.View view) {
         this.view = view;
@@ -68,7 +68,7 @@ public class FavoritesPresenter implements FavoritesContract.Presenter,OnStringL
     public void requestGoodsList(Boolean forceRefresh, String[] tagNames) {
         String[] urls = new String[tagNames.length];
         for (int i = 0; i < urls.length; i++) {
-            urls[i] = "http://meidai.maocanhua.cn/get_goods_by_tag?tagName="+tagNames[i]+"&begin=0&num=6";
+            urls[i] = "http://meidai.maocanhua.cn/get_goods_by_tag?tagName="+tagNames[i]+"&begin=0&num=3";
         }
 
         view.startLoading();
@@ -101,9 +101,57 @@ public class FavoritesPresenter implements FavoritesContract.Presenter,OnStringL
                             if (goods.getCode() == 200) {
                                 goodsLists[1].clear();
                                 goodsLists[1].addAll(goods.getData());
+                                NewHttpUtil.sendGetRequest(urls[2], new Callback() {
+                                    @Override
+                                    public void onFailure(Call call, IOException e) {
 
-                                view.showResult(goodsLists);
-                                view.stopLoading();
+                                    }
+
+                                    @Override
+                                    public void onResponse(Call call, Response response) throws IOException {
+                                        String body = response.body().string();
+                                        Goods goods = new Gson().fromJson(body, Goods.class);
+                                        if (goods.getCode() == 200) {
+                                            goodsLists[2].clear();
+                                            goodsLists[2].addAll(goods.getData());
+                                            NewHttpUtil.sendGetRequest(urls[3], new Callback() {
+                                                @Override
+                                                public void onFailure(Call call, IOException e) {
+
+                                                }
+
+                                                @Override
+                                                public void onResponse(Call call, Response response) throws IOException {
+                                                    String body = response.body().string();
+                                                    Goods goods = new Gson().fromJson(body, Goods.class);
+                                                    if (goods.getCode() == 200) {
+                                                        goodsLists[3].clear();
+                                                        goodsLists[3].addAll(goods.getData());
+                                                        NewHttpUtil.sendGetRequest(urls[4], new Callback() {
+                                                            @Override
+                                                            public void onFailure(Call call, IOException e) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void onResponse(Call call, Response response) throws IOException {
+                                                                String body = response.body().string();
+                                                                Goods goods = new Gson().fromJson(body, Goods.class);
+                                                                if (goods.getCode() == 200) {
+                                                                    goodsLists[4].clear();
+                                                                    goodsLists[4].addAll(goods.getData());
+                                                                    view.showResult(goodsLists);
+                                                                    view.stopLoading();
+                                                                }
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+
                             }
                         }
                     });

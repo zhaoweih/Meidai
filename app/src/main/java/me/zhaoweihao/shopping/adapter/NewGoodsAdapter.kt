@@ -25,16 +25,10 @@ import me.zhaoweihao.shopping.ui.SearchActivity
  * Created by ZhaoWeihao on 2017/11/9.
  */
 
-class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : RecyclerView.Adapter<GoodsAdapter.ViewHolder>() {
+class NewGoodsAdapter(private val mGoodsList: List<Data>, private val code: Int) : RecyclerView.Adapter<NewGoodsAdapter.ViewHolder>() {
     
     companion object {
-        private const val TAG = "GoodsAdapter"
-
-        const val MYGOODSACTIVITY_CODE = 2
-
-        const val HOMEFRAGMENT_CODE = 1
-
-        const val SEARCHACTIVITY_CODE = 3
+        private const val TAG = "NewGoodsAdapter"
     }
 
     private var mContext: Context? = null
@@ -43,8 +37,6 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var goodsImage = view.findViewById<ImageView>(R.id.iv_goods)
-        var goodsName = view.findViewById<TextView>(R.id.tv_goods)
-        var goodsPrice = view.findViewById<TextView>(R.id.tv_goods_price)
         var goodsView: View = view
     }
 
@@ -54,7 +46,7 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
         }
         gson = Gson()
         val view = LayoutInflater.from(mContext)
-                .inflate(R.layout.goods_item, parent, false)
+                .inflate(R.layout.goods_items_copy, parent, false)
         val holder = ViewHolder(view)
 
         holder.goodsView.setOnClickListener {
@@ -79,13 +71,8 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
             intent.putExtra("userName", good.userName)
             intent.putExtra("userAvator", good.userAvator)
 
-            if (code == HOMEFRAGMENT_CODE) {
                 (mContext as MainActivity).startActivity(intent)
-            } else if (code == MYGOODSACTIVITY_CODE) {
-                (mContext as MyGoodsActivity).startActivity(intent)
-            } else if (code == SEARCHACTIVITY_CODE) {
-                (mContext as SearchActivity).startActivity(intent)
-            }
+
 
 
         }
@@ -97,11 +84,9 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
         val imageUrl = gson!!.fromJson(good.pictures, Array<String>::class.java)[0]
         Log.d(TAG,baseUrl+imageUrl)
         Picasso.with(mContext).load(baseUrl+imageUrl)
-                .resize(500, 500)
-                .centerCrop()
+                .resize(mContext!!.resources.getDimensionPixelSize(R.dimen.border_length), mContext!!.resources.getDimensionPixelSize(R.dimen.border_length))
+                .centerInside()
                 .into(holder.goodsImage)
-        holder.goodsName.text = good.name
-        holder.goodsPrice.text = good.price.toString()
 
     }
 

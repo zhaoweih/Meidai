@@ -1,5 +1,6 @@
 package me.zhaoweihao.shopping.favorites;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import java.util.List;
 
 import me.zhaoweihao.shopping.R;
 import me.zhaoweihao.shopping.adapter.GoodsAdapter;
+import me.zhaoweihao.shopping.adapter.NewGoodsAdapter;
 import me.zhaoweihao.shopping.data.Goods;
 
 public class FavoritesFragment extends Fragment implements FavoritesContract.View{
@@ -29,7 +32,7 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
 
     private FavoritesContract.Presenter mPresenter;
     private SwipeRefreshLayout mRefreshLayout;
-    private GoodsAdapter[] adapters;
+    private NewGoodsAdapter[] adapters;
     private View mEmptyView;
 //    private RecyclerView recyclerView;
     private LinearLayout linearLayout;
@@ -48,20 +51,28 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
 
         initViews(view);
 
-        tagNames = new String[] { "衣服", "化妆品"};
+        tagNames = new String[] { "衣服", "化妆品", "日用品", "数码", "电器"};
 
         recyclerViews = new RecyclerView[tagNames.length];
-        adapters = new GoodsAdapter[tagNames.length];
+        adapters = new NewGoodsAdapter[tagNames.length];
 
         for (int i = 0; i < tagNames.length; i++) {
-            recyclerViews[i] = new RecyclerView(getActivity());
             TextView textView = new TextView(getActivity());
-            textView.setText("分割线");
-            TextView textView1 = new TextView(getActivity());
-            textView1.setText("分割线end");
-            linearLayout.addView(textView);
+            textView.setText(tagNames[i]);
+            textView.setTextColor(this.getResources().getColor(R.color.colorPrimary));
+            ImageView imageView = new ImageView(getActivity());
+            imageView.setImageResource(R.mipmap.ic_launcher);
+            LinearLayout linearLayout1 = new LinearLayout(getActivity());
+            linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
+            linearLayout1.addView(imageView);
+            linearLayout1.addView(textView);
+            android.view.ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+            layoutParams.width = 80;
+            layoutParams.height = 80;
+            imageView.setLayoutParams(layoutParams);
+            recyclerViews[i] = new RecyclerView(getActivity());
+            linearLayout.addView(linearLayout1);
             linearLayout.addView(recyclerViews[i]);
-            linearLayout.addView(textView1);
         }
 
         mPresenter.requestGoodsList(true, tagNames);
@@ -108,9 +119,10 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
         getActivity().runOnUiThread(() -> {
             for (int i = 0; i < tagNames.length; i++) {
                 if (adapters[i] == null) {
-                    adapters[i] = new GoodsAdapter(goodsLists[i], 1);
+                    adapters[i] = new NewGoodsAdapter(goodsLists[i], 1);
 //                recyclerView.setAdapter(adapter);
                     recyclerViews[i].setLayoutManager(new GridLayoutManager(getActivity(), 3));
+                    recyclerViews[i].setNestedScrollingEnabled(false);
                     recyclerViews[i].setAdapter(adapters[i]);
 
                 }
