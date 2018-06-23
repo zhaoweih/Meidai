@@ -25,12 +25,22 @@
             android:id="@+id/tv_good_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="2017冬海宁皮袖毛衣保暖水貂毛绵羊皮袖打底衫真皮羽绒袖针织衫女"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_good_sell"
             app:layout_constraintTop_toBottomOf="@+id/iv_good" />
+
+        <TextView
+            android:id="@+id/tv_before_good_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:text="美代价 "
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_good_price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_good_name" />
 
         <TextView
             android:id="@+id/tv_good_price"
@@ -38,9 +48,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:text="115"
+            app:layout_constraintStart_toEndOf="@id/tv_before_good_text"
             app:layout_constraintTop_toBottomOf="@+id/tv_good_name" />
 
         <TextView
@@ -48,12 +59,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toStartOf="@+id/tv_good_price"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_good_price" />
+            android:text="address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_good"
+            app:layout_constraintStart_toEndOf="@id/tv_good_name" />
 
         <TextView
             android:id="@+id/tv_good_left"
@@ -108,7 +117,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="购买"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -186,7 +195,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="该商品是你正在出售的"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_good_description" />

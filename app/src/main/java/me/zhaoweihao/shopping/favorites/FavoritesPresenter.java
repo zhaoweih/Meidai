@@ -47,7 +47,6 @@ public class FavoritesPresenter implements FavoritesContract.Presenter,OnStringL
 
     @Override
     public void onSuccess(@NotNull String result) {
-        Log.d(TAG, "点3");
         Log.d(TAG, "onSuccess " + result);
 
 
@@ -127,24 +126,26 @@ public class FavoritesPresenter implements FavoritesContract.Presenter,OnStringL
                                                     if (goods.getCode() == 200) {
                                                         goodsLists[3].clear();
                                                         goodsLists[3].addAll(goods.getData());
-                                                        NewHttpUtil.sendGetRequest(urls[4], new Callback() {
-                                                            @Override
-                                                            public void onFailure(Call call, IOException e) {
-
-                                                            }
-
-                                                            @Override
-                                                            public void onResponse(Call call, Response response) throws IOException {
-                                                                String body = response.body().string();
-                                                                Goods goods = new Gson().fromJson(body, Goods.class);
-                                                                if (goods.getCode() == 200) {
-                                                                    goodsLists[4].clear();
-                                                                    goodsLists[4].addAll(goods.getData());
-                                                                    view.showResult(goodsLists);
-                                                                    view.stopLoading();
-                                                                }
-                                                            }
-                                                        });
+                                                        view.showResult(goodsLists);
+                                                        view.stopLoading();
+//                                                        NewHttpUtil.sendGetRequest(urls[4], new Callback() {
+//                                                            @Override
+//                                                            public void onFailure(Call call, IOException e) {
+//
+//                                                            }
+//
+//                                                            @Override
+//                                                            public void onResponse(Call call, Response response) throws IOException {
+//                                                                String body = response.body().string();
+//                                                                Goods goods = new Gson().fromJson(body, Goods.class);
+//                                                                if (goods.getCode() == 200) {
+//                                                                    goodsLists[4].clear();
+//                                                                    goodsLists[4].addAll(goods.getData());
+//                                                                    view.showResult(goodsLists);
+//                                                                    view.stopLoading();
+//                                                                }
+//                                                            }
+//                                                        });
                                                     }
                                                 }
                                             });

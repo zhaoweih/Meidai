@@ -51,7 +51,7 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
 
         initViews(view);
 
-        tagNames = new String[] { "衣服", "化妆品", "日用品", "数码", "电器"};
+        tagNames = new String[] { "衣服", "化妆品", "日用品", "电器"};
 
         recyclerViews = new RecyclerView[tagNames.length];
         adapters = new NewGoodsAdapter[tagNames.length];
@@ -60,17 +60,25 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
             TextView textView = new TextView(getActivity());
             textView.setText(tagNames[i]);
             textView.setTextColor(this.getResources().getColor(R.color.colorPrimary));
+            textView.setTextSize(16);
             ImageView imageView = new ImageView(getActivity());
             imageView.setImageResource(R.mipmap.ic_launcher);
             LinearLayout linearLayout1 = new LinearLayout(getActivity());
             linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
+
             linearLayout1.addView(imageView);
             linearLayout1.addView(textView);
+
             android.view.ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
             layoutParams.width = 80;
             layoutParams.height = 80;
             imageView.setLayoutParams(layoutParams);
+
             recyclerViews[i] = new RecyclerView(getActivity());
+
+            recyclerViews[i].setPadding(0, 20, 0, 20);
+
+
             linearLayout.addView(linearLayout1);
             linearLayout.addView(recyclerViews[i]);
         }

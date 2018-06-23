@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_good.*
+import kotlinx.android.synthetic.main.activity_new_good.*
 import com.daimajia.slider.library.SliderTypes.TextSliderView
 import me.zhaoweihao.shopping.R
 import me.zhaoweihao.shopping.adapter.CommentsAdapter
@@ -19,6 +20,7 @@ import me.zhaoweihao.shopping.utils.Utility
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
+import org.jetbrains.anko.progressDialog
 import org.litepal.crud.DataSupport
 import java.io.IOException
 
@@ -29,12 +31,17 @@ class GoodActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_good)
+        setContentView(R.layout.activity_new_good)
 
         val intent = intent
 
         val goodId = intent.getIntExtra("id", 0)
         val url = Constant.baseUrl + "get_goods_by_id?id=$goodId"
+
+
+        iv_back.setOnClickListener {
+            onBackPressed()
+        }
 
         HttpUtil.sendOkHttpGetRequest(url, object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {
@@ -66,11 +73,13 @@ class GoodActivity : AppCompatActivity() {
                     runOnUiThread {
 
 
-                        val leaveMessage = et_leave_message.text.toString()
+//                        val leaveMessage = et_leave_message.text.toString()
 
                         tv_good_name.text = goodName
-                        tv_good_price.text = goodPrice.toString()
-                        tv_good_address.text = goodAddress
+//                        tv_good_price.text = goodPrice.toString()
+                        val index = goodAddress!!.indexOf('-')
+                        val address: String? = if (index == -1) null else goodAddress.substring(index + 1, index + 3)
+                        tv_good_address.text = address
                         tv_good_sell.text = goodSellCount.toString()
                         tv_good_left.text = goodNum.toString()
                         tv_good_seller_name.text = userName
@@ -89,14 +98,14 @@ class GoodActivity : AppCompatActivity() {
 
                         btn_buy.setOnClickListener {
                             val intent = Intent(this@GoodActivity, BuyActivity::class.java)
-                            val buyNum = et_buy_num.text.toString().toInt()
-                            val totalPrice = goodPrice * buyNum
+//                            val buyNum = et_buy_num.text.toString().toInt()
+//                            val totalPrice = goodPrice * buyNum
                             intent.putExtra("id", goodId)
                             intent.putExtra("sellerId", goodSellerId)
                             intent.putExtra("singlePrice", goodPrice)
-                            intent.putExtra("totalPrice", totalPrice)
-                            intent.putExtra("buyNum", buyNum)
-                            intent.putExtra("leaveMessage", leaveMessage)
+//                            intent.putExtra("totalPrice", totalPrice)
+//                            intent.putExtra("buyNum", buyNum)
+//                            intent.putExtra("leaveMessage", leaveMessage)
                             intent.putExtra("goodName", goodName)
                             startActivity(intent)
 
@@ -211,6 +220,8 @@ class GoodActivity : AppCompatActivity() {
                                             runOnUiThread {
                                                 btn_follow.visibility = View.GONE
                                                 btn_isfollowed.visibility = View.VISIBLE
+                                                Toast.makeText(this@GoodActivity, "关注成功", Toast.LENGTH_SHORT).show()
+
                                             }
                                         }
                                         Log.d(TAG, responseData)
@@ -234,6 +245,7 @@ class GoodActivity : AppCompatActivity() {
                                             runOnUiThread {
                                                 btn_isfollowed.visibility = View.GONE
                                                 btn_follow.visibility = View.VISIBLE
+                                                Toast.makeText(this@GoodActivity, "取消关注成功", Toast.LENGTH_SHORT).show()
                                             }
                                         }
                                         Log.d(TAG, responseData)
@@ -256,6 +268,8 @@ class GoodActivity : AppCompatActivity() {
                                             runOnUiThread {
                                                 btn_collect.visibility = View.GONE
                                                 btn_iscollected.visibility = View.VISIBLE
+                                                Toast.makeText(this@GoodActivity, "收藏成功", Toast.LENGTH_SHORT).show()
+
                                             }
                                         }
                                         Log.d(TAG, responseData)
@@ -279,6 +293,8 @@ class GoodActivity : AppCompatActivity() {
                                             runOnUiThread {
                                                 btn_iscollected.visibility = View.GONE
                                                 btn_collect.visibility = View.VISIBLE
+                                                Toast.makeText(this@GoodActivity, "取消收藏成功", Toast.LENGTH_SHORT).show()
+
                                             }
                                         }
                                         Log.d(TAG, responseData)
@@ -286,6 +302,7 @@ class GoodActivity : AppCompatActivity() {
 
                                 })
                             }
+
                         } else {
                             Log.d(TAG, "find is null")
                         }
@@ -308,7 +325,7 @@ class GoodActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call?, response: Response?) {
                 val responseData = response!!.body()!!.string()
-                val comments = Utility.handleGetCommnentResponse(responseData)
+                val comments = Utility.handleGetCommnentResponse(responseData) ?: return
                 if ( comments!!.code == 200 ) {
                     val data = comments.data
                     runOnUiThread {
