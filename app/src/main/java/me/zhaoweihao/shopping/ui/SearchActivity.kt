@@ -3,6 +3,7 @@ package me.zhaoweihao.shopping.ui
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_search.*
 import me.zhaoweihao.shopping.R
@@ -25,6 +26,8 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
+
+
         btn_search.setOnClickListener {
             val keyword = et_keyword.text.toString()
 
@@ -45,7 +48,7 @@ class SearchActivity : AppCompatActivity() {
                         val data = goods.data
 
                         runOnUiThread {
-                            rv_search.layoutManager = GridLayoutManager(this@SearchActivity, 3)
+                            rv_search.layoutManager = LinearLayoutManager(this@SearchActivity)
                             val adapter = GoodsAdapter(data!!,SEARCHACTIVITY_CODE)
                             rv_search.adapter = adapter
                         }

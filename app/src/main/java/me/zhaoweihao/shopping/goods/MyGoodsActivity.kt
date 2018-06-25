@@ -3,6 +3,7 @@ package me.zhaoweihao.shopping.goods
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_my_goods.*
 import me.zhaoweihao.shopping.R
@@ -48,7 +49,7 @@ class MyGoodsActivity : AppCompatActivity() {
                     if ( goods!!.code == 200) {
                         val data = goods.data
                         runOnUiThread {
-                            rv_my_goods.layoutManager = GridLayoutManager(this@MyGoodsActivity, 3)
+                            rv_my_goods.layoutManager = LinearLayoutManager(this@MyGoodsActivity)
                             val adapter = GoodsAdapter(data!!,MYGOODSACTIVITY_CODE)
                             rv_my_goods.adapter = adapter
                         }

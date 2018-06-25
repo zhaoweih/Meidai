@@ -46,7 +46,7 @@ dependencies {
     compile 'com.lzy.widget:ninegridview:0.2.0'
     compile "org.jetbrains.anko:anko-commons:0.10.5"
     compile "org.jetbrains.anko:anko-design:0.10.5" // For SnackBars
-    compile ('io.socket:socket.io-client:0.8.3') {
+    compile('io.socket:socket.io-client:0.8.3') {
         exclude group: 'org.json', module: 'json'
     }
 

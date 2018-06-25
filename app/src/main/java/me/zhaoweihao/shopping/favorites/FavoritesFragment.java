@@ -25,6 +25,7 @@ import me.zhaoweihao.shopping.R;
 import me.zhaoweihao.shopping.adapter.GoodsAdapter;
 import me.zhaoweihao.shopping.adapter.NewGoodsAdapter;
 import me.zhaoweihao.shopping.data.Goods;
+import me.zhaoweihao.shopping.goods.TagGoodsActivity;
 
 public class FavoritesFragment extends Fragment implements FavoritesContract.View{
 
@@ -38,6 +39,9 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
     private LinearLayout linearLayout;
     private String[] tagNames;
     private RecyclerView[] recyclerViews;
+
+    private TextView[] textViews;
+    private LinearLayout[] linearLayouts;
 
     public FavoritesFragment() {
     }
@@ -91,7 +95,38 @@ public class FavoritesFragment extends Fragment implements FavoritesContract.Vie
             stopLoading();
         });
 
+        setListener(view);
+
         return view;
+
+    }
+
+    private void setListener(View view) {
+
+        String[] newTagNames = {"化妆品","其他", "日用品", "数码", "电器", "衣服"};
+
+        int[] tvs = {R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6};
+
+        int[] lls = {R.id.ll_1, R.id.ll_2, R.id.ll_3, R.id.ll_4, R.id.ll_5, R.id.ll_6};
+
+        textViews = new TextView[newTagNames.length];
+
+        linearLayouts = new LinearLayout[newTagNames.length];
+
+        for (int i = 0; i< newTagNames.length; i++) {
+            textViews[i] = view.findViewById(tvs[i]);
+            textViews[i].setText(newTagNames[i]);
+        }
+
+        for (int i = 0; i < linearLayouts.length; i++) {
+            linearLayouts[i] = view.findViewById(lls[i]);
+            int finalI = i;
+            linearLayouts[i].setOnClickListener(view1 -> {
+                Intent intent = new Intent(getActivity(), TagGoodsActivity.class);
+                intent.putExtra("tagName", newTagNames[finalI]);
+                startActivity(intent);
+            });
+        }
 
     }
 

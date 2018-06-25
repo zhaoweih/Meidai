@@ -13,19 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity"
-            android:exported="true"
-            >
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".goods.GoodActivity" >
 
         </activity>
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".goods.GoodActivity"></activity>
         <activity android:name=".trade.BuyActivity" />
         <activity android:name=".goods.CollectionActivity" />
         <activity android:name=".user.ConcernActivity" />
@@ -33,19 +32,18 @@
         <activity android:name=".trade.SellerTradeActivity" />
         <activity android:name=".user.UpdateUserInfoActivity" />
         <activity android:name=".goods.PublishGoodsActivity" />
-        <activity android:name=".goods.MyGoodsActivity" />
-        <activity android:name=".message.NotificationActivity" />
-        <activity android:name=".ui.SearchActivity" >
+        <activity android:name=".goods.MyGoodsActivity">
 
         </activity>
+        <activity android:name=".message.NotificationActivity" />
+        <activity android:name=".ui.SearchActivity"></activity>
         <activity android:name=".goods.UpdateGoodsActivity" />
         <activity android:name=".trade.CommentActivity" />
         <activity android:name=".ui.RegisterActivity" />
         <activity android:name=".user.AuthenticateActivity" />
         <activity android:name=".ui.SettingActivity" />
-        <activity android:name=".message.ChatActivity">
-
-        </activity>
+        <activity android:name=".message.ChatActivity"></activity>
+        <activity android:name=".goods.TagGoodsActivity"></activity>
     </application>
 
 </manifest>

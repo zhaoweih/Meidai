@@ -2,6 +2,7 @@ package me.zhaoweihao.shopping.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.media.Image
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,8 +18,10 @@ import me.zhaoweihao.shopping.constant.Constant.baseUrl
 import me.zhaoweihao.shopping.goods.MyGoodsActivity
 import me.zhaoweihao.shopping.data.Goods.Data
 import me.zhaoweihao.shopping.goods.GoodActivity
+import me.zhaoweihao.shopping.goods.TagGoodsActivity
 import me.zhaoweihao.shopping.ui.MainActivity
 import me.zhaoweihao.shopping.ui.SearchActivity
+import org.w3c.dom.Text
 
 
 /**
@@ -35,6 +38,8 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
         const val HOMEFRAGMENT_CODE = 1
 
         const val SEARCHACTIVITY_CODE = 3
+
+        const val TAG_CODE = 4
     }
 
     private var mContext: Context? = null
@@ -45,6 +50,10 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
         var goodsImage = view.findViewById<ImageView>(R.id.iv_goods)
         var goodsName = view.findViewById<TextView>(R.id.tv_goods)
         var goodsPrice = view.findViewById<TextView>(R.id.tv_goods_price)
+        var goodsLocation = view.findViewById<TextView>(R.id.tv_goods_location)
+        var goodsSell = view.findViewById<TextView>(R.id.tv_goods_sell)
+        var goodsSeller = view.findViewById<TextView>(R.id.tv_goods_seller)
+        var sellerAva = view.findViewById<ImageView>(R.id.iv_goods_seller)
         var goodsView: View = view
     }
 
@@ -54,7 +63,7 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
         }
         gson = Gson()
         val view = LayoutInflater.from(mContext)
-                .inflate(R.layout.goods_item, parent, false)
+                .inflate(R.layout.new_good_item, parent, false)
         val holder = ViewHolder(view)
 
         holder.goodsView.setOnClickListener {
@@ -85,6 +94,8 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
                 (mContext as MyGoodsActivity).startActivity(intent)
             } else if (code == SEARCHACTIVITY_CODE) {
                 (mContext as SearchActivity).startActivity(intent)
+            } else if (code == TAG_CODE) {
+                (mContext as TagGoodsActivity).startActivity(intent)
             }
 
 
@@ -95,13 +106,22 @@ class GoodsAdapter(private val mGoodsList: List<Data>,private val code: Int) : R
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val good = mGoodsList[position]
         val imageUrl = gson!!.fromJson(good.pictures, Array<String>::class.java)[0]
-        Log.d(TAG,baseUrl+imageUrl)
         Picasso.with(mContext).load(baseUrl+imageUrl)
                 .resize(500, 500)
                 .centerCrop()
                 .into(holder.goodsImage)
+        Picasso.with(mContext).load(baseUrl+good.userAvator)
+                .resize(50, 50)
+                .centerCrop()
+                .into(holder.sellerAva)
+
+        val index = good.address!!.indexOf('-')
+        val address: String? = if (index == -1) null else good.address!!.substring(index + 1, index + 3)
         holder.goodsName.text = good.name
         holder.goodsPrice.text = good.price.toString()
+        holder.goodsLocation.text = address
+        holder.goodsSell.text = "销量：" + good.sellCount.toString()
+        holder.goodsSeller.text = "卖家：" + good.userName
 
     }
 
